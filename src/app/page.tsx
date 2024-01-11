@@ -11,6 +11,7 @@ export default function Home() {
       <div className='px-5 pt-5 space-y-0'>
         <h3 className='text-lg md:text-xl text-neutral-400 font-medium'>Hi, my name is</h3>
         <h1 className='text-4xl md:text-5xl font-bold gradient-linear-text'>Jinjin You</h1>
+        <h2 className="text-xl md:text-2xl text-red pt-2 border-b-transparent hover:border-b-[2px 4px 6px]">A passionate full-stack developer.</h2>
       </div>
       <div className='component-box my-8 px-5'>
         <div className='header-box relative inline-block mb-1'>About Me</div>
