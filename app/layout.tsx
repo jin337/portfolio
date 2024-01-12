@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import '@/public/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Jinjin You | Portfolio',
+  title: 'Jinjin You | resume',
   description: 'Software Developer | Frontend Developer | Full Stack Web Developer',
 }
 

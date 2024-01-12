@@ -33,8 +33,34 @@ const skills = [
   'bootstrap',
   'postman',
 ]
-const experiencelist = ['', '']
-const projectlist = ['', '', '', '']
+const experiencelist = [
+  {
+    id: 1,
+    logo: '',
+    position: 'Software Developer',
+    job_type: 1,
+    base: 'Shanghai',
+    time_form: '2021-01',
+    time_to: '2022-03',
+    description:
+      "Hello, I'm a software developer at The Queen's English, working on a diverse range of products from designing and developing new features to maintaining and optimizing existing ones. I have created several features utilized by thousands of users and enjoy collaborating with my team to find innovative solutions to challenging problems. It's a rewarding role and being part of a dynamic team that's constantly pushing the boundaries of software development is exciting.",
+    tag_list: ['HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css'],
+  },
+]
+const projectlist = [
+  {
+    id: 1,
+    project_name: 'Software Developer',
+    description: 'Marvel API-based JavaScript project: Random character details, name search, responsive design.',
+    tag_list: ['HTML', 'css'],
+  },
+  {
+    id: 2,
+    project_name: 'Software Developer',
+    description: 'Marvel API-based JavaScript project: Random character details, name search, responsive design.',
+    tag_list: ['HTML', 'css', 'HTML', 'css', 'HTML', 'css'],
+  },
+]
 
 export default function Home() {
   return (
@@ -73,17 +99,17 @@ export default function Home() {
           <div className='space-y-2'>
             {experiencelist.map((item, index) => (
               <Fragment key={index}>
-                <ExpCard>2</ExpCard>
+                <ExpCard item={item} />
               </Fragment>
             ))}
           </div>
         </ItemCard>
 
         <ItemCard title='Projects' icon={<LayoutList size={18} />}>
-          <div className='columns-2 xs:columns-1 space-y-4 gap-4'>
+          <div className='columns-1 xs:columns-2 space-y-4 gap-4'>
             {projectlist.map((item, index) => (
               <Fragment key={index}>
-                <ProCard>1</ProCard>
+                <ProCard item={item} />
               </Fragment>
             ))}
           </div>
