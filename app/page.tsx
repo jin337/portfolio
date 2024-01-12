@@ -36,7 +36,7 @@ const skills = [
 const experiencelist = [
   {
     id: 1,
-    logo: '',
+    logo: '/images/sls.png',
     position: 'Software Developer',
     job_type: 1,
     base: 'Shanghai',
@@ -50,12 +50,14 @@ const experiencelist = [
 const projectlist = [
   {
     id: 1,
+    cover: '/images/background.jpg',
     project_name: 'Software Developer',
     description: 'Marvel API-based JavaScript project: Random character details, name search, responsive design.',
     tag_list: ['HTML', 'css'],
   },
   {
     id: 2,
+    cover: '/images/background.jpg',
     project_name: 'Software Developer',
     description: 'Marvel API-based JavaScript project: Random character details, name search, responsive design.',
     tag_list: ['HTML', 'css', 'HTML', 'css', 'HTML', 'css'],
