@@ -13,5 +13,3 @@ bun dev
 ```
 
 # url
-
-https://jin337.vercel.app/
