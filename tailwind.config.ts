@@ -11,6 +11,7 @@ const config: Config = {
       screens: {
         xs: '450px',
       },
+      keyframes: {},
     },
     fontFamily: {
       Grotesque: ['Grotesque', 'sans-serif'],
