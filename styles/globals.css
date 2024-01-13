@@ -1,24 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face {
-  font-family: Grotesque;
-  font-weight: 400;
-  font-style: normal;
-  font-stretch: 100%;
-
-  font-display: swap;
-  src: url('./fonts/Grotesque.woff2') format('woff2');
-}
-@font-face {
-  font-family: Grotesque_b;
-  font-weight: 400;
-  font-style: normal;
-  font-stretch: 100%;
-
-  font-display: swap;
-  src: url('./fonts/Grotesque_b.woff2') format('woff2');
-}
 .wrap-container {
   @apply container max-w-[750px];
 }

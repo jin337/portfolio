@@ -13,11 +13,6 @@ const config: Config = {
       },
       keyframes: {},
     },
-    fontFamily: {
-      Grotesque: ['Grotesque', 'sans-serif'],
-      Grotesque_b: ['Grotesque_b', 'sans-serif'],
-      fantasy: ['fantasy', 'sans-serif'],
-    },
   },
   plugins: [],
 }
