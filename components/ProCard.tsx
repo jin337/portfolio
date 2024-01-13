@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { Github } from 'lucide-react'
 
 const ProCard = ({ item }: { item: any }) => {
   return (
@@ -14,7 +15,12 @@ const ProCard = ({ item }: { item: any }) => {
           </picture>
         </div>
         <div className='p-2'>
-          <div className='text-lg font-bold'>{item.project_name}</div>
+          <div className='flex items-center justify-between'>
+            <span className='text-lg font-bold'>{item.project_name}</span>
+            <span className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-900'>
+              <Github size={18} />
+            </span>
+          </div>
           <div className='text-sm'>{item.description}</div>
           <div className='flex flex-wrap gap-1 mt-2'>
             {item.tag_list.map((e: any, i: any) => (

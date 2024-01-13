@@ -1,5 +1,16 @@
-import Tag from '@/components/Tag'
+import moment from 'moment'
 import { Fragment } from 'react'
+import Tag from '@/components/Tag'
+
+const diffTime = (from: string, to: string) => {
+  let startDate = moment(from)
+  let endDate = moment(to)
+  const duration = moment.duration(endDate.add(1, 'month').diff(startDate))
+  const years = duration.years()
+  const months = duration.months()
+  const diff = `${years ? `${years} year${years > 1 ? 's' : ''}` : ''} ${months ? `${months} month${months > 1 ? 's' : ''}` : ''}`
+  return diff
+}
 
 const ExpCard = ({ item }: { item: any }) => {
   return (
@@ -19,11 +30,11 @@ const ExpCard = ({ item }: { item: any }) => {
               <span>{item.base}</span>
             </div>
             <div className='text-sm space-x-1'>
-              <span>{item.time_form}</span>
+              <span>{moment(item.time_form).format('MMM YYYY')}</span>
               <span>-</span>
-              <span>{item.time_to}</span>
+              <span>{moment(item.time_to).format('MMM YYYY')}</span>
               <span>•</span>
-              <span>7 months</span>
+              <span>{diffTime(item.time_form, item.time_to)}</span>
             </div>
           </div>
         </div>
