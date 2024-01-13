@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-import '@/public/globals.css'
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'Jinjin You | resume',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
