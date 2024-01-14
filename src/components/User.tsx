@@ -19,14 +19,14 @@ export default function User({ item }: { item: UserProps }) {
         </div>
         <div className='flex text-neutral-100'>
           <a
-            href={item.github_link}
+            href={item.linkedin_link}
             target='_blank'
             className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'
           >
             <Linkedin size={18} />
           </a>
           <a
-            href={item.linkedin_link}
+            href={item.github_link}
             target='_blank'
             className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'
           >
