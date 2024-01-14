@@ -2,20 +2,20 @@ import { Fragment } from 'react'
 import Image from 'next/image'
 import { Github, Linkedin } from 'lucide-react'
 
-interface UserProp {
-  cover: string
-  github_link: string
-  linkedin_link: string
-  slogn: string
-  name: string
+interface UserProps {
+  cover?: string
+  github_link?: string
+  linkedin_link?: string
+  slogn?: string
+  name?: string
 }
 
-export default function User({ item }: { item: UserProp }) {
+export default function User({ item }: { item: UserProps }) {
   return (
     <Fragment>
       <div className='flex flex-wrap justify-between items-center -mt-16'>
         <div className='size-48 relative rounded-full overflow-hidden border-8 border-neutral-900 select-none'>
-          <Image className='object-cover' src={item.cover} priority fill sizes='100%' alt='cover' />
+          {item.cover && <Image className='object-cover' src={item.cover} priority fill sizes='100%' alt='cover' />}
         </div>
         <div className='flex text-neutral-100'>
           <a

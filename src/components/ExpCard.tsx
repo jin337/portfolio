@@ -30,11 +30,11 @@ const ExpCard = ({ item }: { item: any }) => {
               <span>{item.base}</span>
             </div>
             <div className='text-sm space-x-1'>
-              <span>{moment(item.time_form).format('MMM YYYY')}</span>
+              <span>{moment(item.start_form).format('MMM YYYY')}</span>
               <span>-</span>
-              <span>{moment(item.time_to).format('MMM YYYY')}</span>
+              <span>{moment(item.end_to).format('MMM YYYY')}</span>
               <span>•</span>
-              <span>{diffTime(item.time_form, item.time_to)}</span>
+              <span>{diffTime(item.start_form, item.end_to)}</span>
             </div>
           </div>
         </div>
