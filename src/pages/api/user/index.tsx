@@ -1,10 +1,12 @@
-import { connectDB, UserModel } from '@/lib/db'
+import { connectDB } from '@/lib/db'
+import { UserModel } from '@/lib/model'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { UserInfo } from '@/types/user'
-// 连接数据库
-connectDB()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<UserInfo>) {
+  // 连接数据库
+  await connectDB()
+
   if (req.method === 'GET') {
     try {
       const user = await UserModel.findOne()
