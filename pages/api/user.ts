@@ -1,11 +1,24 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-  data: any
+interface User {
+  state: number | undefined
+  msg: string | undefined
+  data: object
 }
-
-const about = ["I'm a front-end developer with 8 years of work experience", 'Welcome to Star, Fork and Issue']
-
-export default function GET(req: NextApiRequest, res: NextApiResponse<Data>) {
-  res.status(200).json({ data: about })
+const GET = (req: NextApiRequest, res: NextApiResponse<User>) => {
+  return res.status(200).json({
+    state: 200,
+    msg: '',
+    data: {
+      cover: '/background.jpg',
+      bannerbg: '/background.jpg',
+      name: 'Jinjin You',
+      slogn: 'A passionate full-stack developer.',
+      github_link: 'https://github.com/jin337',
+      linkedin_link: 'https://linkedin.com',
+      email: 'jin337x@outlook.com',
+      description: 'this is demo',
+    },
+  })
 }
+export default GET

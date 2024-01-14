@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { ScanFace, Cookie, LayoutList, LibraryBig, Cable, Mail, Github, Linkedin } from 'lucide-react'
 
@@ -5,11 +6,14 @@ import ItemCard from '@/components/ItemCard'
 import ExpCard from '@/components/ExpCard'
 import ProCard from '@/components/ProCard'
 import Button from '@/components/Button'
+import Banner from '@/components/Banner'
+import User from '@/components/User'
 
-import bannerbg from '@/public/background.jpg'
 import { Fragment } from 'react'
 
 const user = {
+  cover: '/background.jpg',
+  bannerbg: '/background.jpg',
   name: 'Jinjin You',
   slogn: 'A passionate full-stack developer.',
   github_link: 'https://github.com/jin337',
@@ -17,6 +21,7 @@ const user = {
   email: 'jin337x@outlook.com',
   description: 'this is demo',
 }
+
 const about = ["I'm a front-end developer with 8 years of work experience", 'Welcome to Star, Fork and Issue']
 const skills = [
   'nextjs',
@@ -78,42 +83,10 @@ const projectlist = [
 export default function Home() {
   return (
     <main className='my-16'>
-      <div className='relative w-full h-36 sm:h-44 md:h-52'>
-        <Image className='object-cover' src={bannerbg} priority fill alt='background' />
-      </div>
+      <Banner url={user.bannerbg} />
 
       <main className='wrap-container mx-auto px-4'>
-        <div className='flex flex-wrap justify-between items-center -mt-16'>
-          <div className='size-48 relative rounded-full overflow-hidden border-8 border-neutral-900'>
-            <Image className='object-cover' src={bannerbg} priority fill alt='cover' />
-          </div>
-          <div className='flex text-neutral-100'>
-            <a
-              href={user.github_link}
-              target='_blank'
-              className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'
-            >
-              <Linkedin size={18} />
-            </a>
-            <a
-              href={user.linkedin_link}
-              target='_blank'
-              className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'
-            >
-              <Github size={18} />
-            </a>
-          </div>
-        </div>
-
-        <div className='mt-4'>
-          <h3 className='text-xl text-neutral-400'>Hi, my name is</h3>
-          <h1 className='text-5xl font-black'>
-            <span className='bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-teal-500 to-cyan-500'>
-              {user.name}
-            </span>
-          </h1>
-          <h2 className='text-2xl text-neutral-100 mt-2'>{user.slogn}</h2>
-        </div>
+        <User item={user} />
 
         <ItemCard title='About Me' icon={<ScanFace size={18} />}>
           <ul className=' text-neutral-400 space-y-2'>
