@@ -1,8 +1,19 @@
-const Button = ({ size = 'base', icon, children }: { size?: String; icon?: React.ReactNode; children: React.ReactNode }) => {
+const Button = ({
+  size = 'base',
+  icon,
+  link,
+  children,
+}: {
+  size?: string
+  icon?: React.ReactNode
+  link?: string | 'javascript:void(0);'
+  children: React.ReactNode
+}) => {
   return (
     <div className='flex'>
       <a
-        href=''
+        href={link}
+        target='_blank'
         className={`${size == 'base' && 'py-2'} ${
           size == 'sm' && 'py-1'
         }  border px-3 rounded-md border-neutral-600 flex items-center hover:bg-neutral-800`}

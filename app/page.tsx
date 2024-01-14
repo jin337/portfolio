@@ -9,11 +9,24 @@ import Button from '@/components/Button'
 import bannerbg from '@/public/background.jpg'
 import { Fragment } from 'react'
 
+const user = {
+  name: 'Jinjin You',
+  slogn: 'A passionate full-stack developer.',
+  github_link: 'https://github.com/jin337',
+  linkedin_link: 'https://linkedin.com',
+  email: 'jin337x@outlook.com',
+  description: 'this is demo',
+}
 const about = ["I'm a front-end developer with 8 years of work experience", 'Welcome to Star, Fork and Issue']
 const skills = [
-  'vue',
+  'nextjs',
+  'nuxtjs',
+  'nodejs',
   'react',
   'redux',
+  'vue',
+  'vite',
+  'webpack',
   'js',
   'ts',
   'html',
@@ -21,13 +34,8 @@ const skills = [
   'jquery',
   'sass',
   'tailwind',
-  'nodejs',
-  'nuxtjs',
-  'nextjs',
   'express',
   'git',
-  'vite',
-  'webpack',
   'mongodb',
   'graphql',
   'bootstrap',
@@ -37,13 +45,12 @@ const experiencelist = [
   {
     id: 1,
     logo: '/background.jpg',
-    position: 'Software Developer',
+    position: 'this is title',
     job_type: 1,
     base: 'Shanghai',
     time_form: '2021-01',
     time_to: '2022-03',
-    description:
-      "Hello, I'm a software developer at The Queen's English, working on a diverse range of products from designing and developing new features to maintaining and optimizing existing ones. I have created several features utilized by thousands of users and enjoy collaborating with my team to find innovative solutions to challenging problems. It's a rewarding role and being part of a dynamic team that's constantly pushing the boundaries of software development is exciting.",
+    description: 'this is text',
     tag_list: ['HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css', 'HTML', 'css'],
   },
 ]
@@ -51,16 +58,20 @@ const projectlist = [
   {
     id: 1,
     cover: '/background.jpg',
-    project_name: 'Software Developer',
-    description: 'Marvel API-based JavaScript project: Random character details, name search, responsive design.',
+    project_name: 'this is title',
+    description: 'this is text',
     tag_list: ['HTML', 'css'],
+    github_link: 'https://github.com/jin337',
+    link: 'https://www.baidu.com/',
   },
   {
     id: 2,
     cover: '/background.jpg',
-    project_name: 'Software Developer',
-    description: 'Marvel API-based JavaScript project: Random character details, name search, responsive design.',
+    project_name: 'this is title',
+    description: 'this is text',
     tag_list: ['HTML', 'css', 'HTML', 'css', 'HTML', 'css'],
+    github_link: 'https://github.com/jin337',
+    link: 'https://www.baidu.com/',
   },
 ]
 
@@ -77,12 +88,20 @@ export default function Home() {
             <Image className='object-cover' src={bannerbg} priority fill alt='cover' />
           </div>
           <div className='flex text-neutral-100'>
-            <span className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'>
+            <a
+              href={user.github_link}
+              target='_blank'
+              className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'
+            >
               <Linkedin size={18} />
-            </span>
-            <span className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'>
+            </a>
+            <a
+              href={user.linkedin_link}
+              target='_blank'
+              className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'
+            >
               <Github size={18} />
-            </span>
+            </a>
           </div>
         </div>
 
@@ -90,10 +109,10 @@ export default function Home() {
           <h3 className='text-xl text-neutral-400'>Hi, my name is</h3>
           <h1 className='text-5xl font-black'>
             <span className='bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-teal-500 to-cyan-500'>
-              Jinjin You
+              {user.name}
             </span>
           </h1>
-          <h2 className='text-2xl text-neutral-100 mt-2'>A passionate full-stack developer.</h2>
+          <h2 className='text-2xl text-neutral-100 mt-2'>{user.slogn}</h2>
         </div>
 
         <ItemCard title='About Me' icon={<ScanFace size={18} />}>
@@ -134,20 +153,18 @@ export default function Home() {
 
         <ItemCard title='Contact Me' icon={<Cable size={18} />}>
           <div className='flex space-x-4'>
-            <Button size='sm' icon={<Github size={24} />}>
+            <Button size='sm' icon={<Github size={24} />} link={user.github_link}>
               Github
             </Button>
-            <Button size='sm' icon={<Linkedin size={24} />}>
+            <Button size='sm' icon={<Linkedin size={24} />} link={user.linkedin_link}>
               LinkedIn
             </Button>
           </div>
-          <div className='text-sm my-4'>
-            As a dedicated developer, I&lsquo;m fueled by my passion for coding and an unyielding hunger for fresh challenges. If
-            you&lsquo;re interested in collaborating or embarking on an exciting project, please feel free to reach out.
-            Let&lsquo;s create something extraordinary together!
-          </div>
+          <div className='text-sm my-4'>{user.description}</div>
           <div className='flex justify-center'>
-            <Button icon={<Mail size={24} />}>Git in touch</Button>
+            <Button icon={<Mail size={24} />} link={'mailto:' + user.linkedin_link}>
+              Git in touch
+            </Button>
           </div>
         </ItemCard>
       </main>

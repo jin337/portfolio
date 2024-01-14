@@ -4,22 +4,28 @@ import { Github } from 'lucide-react'
 const ProCard = ({ item }: { item: any }) => {
   return (
     <div className='text-md text-neutral-400 font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
-      <div className='group-hover/item:bg-neutral-800/[0.5] inline-table'>
+      <div className='group-hover/item:bg-neutral-800/[0.5]'>
         <div className='cursor-pointer overflow-hidden rounded-md'>
-          <picture>
-            <img
-              className='w-full h-48 object-cover duration-300 transition-all group-hover/item:scale-110'
-              src={item.cover}
-              alt='cover'
-            />
-          </picture>
+          <a href={item.link} target='_blank'>
+            <picture>
+              <img
+                className='w-full h-48 object-cover duration-300 transition-all group-hover/item:scale-110'
+                src={item.cover}
+                alt='cover'
+              />
+            </picture>
+          </a>
         </div>
         <div className='p-2'>
           <div className='flex items-center justify-between'>
             <span className='text-lg font-bold'>{item.project_name}</span>
-            <span className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-900'>
+            <a
+              href={item.github_link}
+              target='_blank'
+              className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-900'
+            >
               <Github size={18} />
-            </span>
+            </a>
           </div>
           <div className='text-sm'>{item.description}</div>
           <div className='flex flex-wrap gap-1 mt-2'>
