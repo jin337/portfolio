@@ -13,8 +13,8 @@ interface UserProps {
 export default function User({ item }: { item: UserProps }) {
   return (
     <Fragment>
-      <div className='flex flex-wrap justify-between items-center -mt-16'>
-        <div className='size-48 relative rounded-full overflow-hidden border-8 border-neutral-900 select-none'>
+      <div className='flex flex-wrap justify-between items-end xs:items-center -mt-16'>
+        <div className='size-32 xs:size-48 relative rounded-full overflow-hidden border-8 border-neutral-900 select-none'>
           {item.cover && <Image className='object-cover' src={item.cover} priority fill sizes='100%' alt='cover' />}
         </div>
         <div className='flex text-neutral-100'>
