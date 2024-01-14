@@ -36,7 +36,7 @@ const skills = [
 const experiencelist = [
   {
     id: 1,
-    logo: '/sls.png',
+    logo: '/background.jpg',
     position: 'Software Developer',
     job_type: 1,
     base: 'Shanghai',
@@ -70,7 +70,22 @@ export default function Home() {
       <div className='relative w-full h-36 sm:h-44 md:h-52'>
         <Image className='object-cover' src={bannerbg} priority fill alt='background' />
       </div>
+
       <main className='wrap-container mx-auto px-4'>
+        <div className='flex flex-wrap justify-between items-center -mt-16'>
+          <div className='size-48 relative rounded-full overflow-hidden border-8 border-neutral-900'>
+            <Image className='object-cover' src={bannerbg} priority fill alt='cover' />
+          </div>
+          <div className='flex text-neutral-100'>
+            <span className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'>
+              <Linkedin size={18} />
+            </span>
+            <span className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-800'>
+              <Github size={18} />
+            </span>
+          </div>
+        </div>
+
         <div className='mt-4'>
           <h3 className='text-xl text-neutral-400'>Hi, my name is</h3>
           <h1 className='text-5xl font-black'>

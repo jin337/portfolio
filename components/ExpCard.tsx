@@ -16,13 +16,13 @@ const ExpCard = ({ item }: { item: any }) => {
   return (
     <div className='text-md text-neutral-400 font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
       <div className='p-4 group-hover/item:bg-neutral-800/[0.5] rounded-md'>
-        <div className='flex'>
-          <div className='flex size-16 border-dashed border rounded-md border-neutral-600 group-hover/item:border-solid'>
+        <div className='flex flex-wrap'>
+          <div className='flex size-16 border-dashed border rounded-md border-neutral-600 group-hover/item:border-solid mr-4'>
             <picture className='flex items-center'>
               <img className='object-contain p-2' src={item.logo} alt='logo' />
             </picture>
           </div>
-          <div className=' ml-4'>
+          <div>
             <div className='text-lg font-bold'>{item.position}</div>
             <div className='text-base space-x-1'>
               <span>{item.job_type == 1 ? 'Full-time' : 'Part-time'}</span>
