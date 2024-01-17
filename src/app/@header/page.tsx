@@ -14,9 +14,9 @@ const Header = () => {
           <div className='size-16 flex items-center justify-center'>
             <span className={`text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
           </div>
-          <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded'>
+          {/* <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded'>
             {false ? <Moon size={20} /> : <Sun size={20} />}
-          </div>
+          </div> */}
         </div>
       </div>
     </header>

@@ -1,30 +1,37 @@
 'use client'
 import { ScanFace, Cookie, LayoutList, LibraryBig, Cable, Mail, Github, Linkedin } from 'lucide-react'
+import { Fragment, useEffect, useState, lazy } from 'react'
 
-import ItemCard from '@/components/ItemCard'
-import ExpCard from '@/components/ExpCard'
-import ProCard from '@/components/ProCard'
-import Button from '@/components/Button'
-import Banner from '@/components/Banner'
-import User from '@/components/User'
-
-import { Fragment, useEffect, useState } from 'react'
+const Banner = lazy(() => import('@/components/Banner'))
+const User = lazy(() => import('@/components/User'))
+const ItemCard = lazy(() => import('@/components/ItemCard'))
+const ExpCard = lazy(() => import('@/components/ExpCard'))
+const ProCard = lazy(() => import('@/components/ProCard'))
+const Button = lazy(() => import('@/components/Button'))
+const Loading = lazy(() => import('@/components/Loading'))
 
 import { PropUser } from '@/types/user'
 
 export default function Home() {
-  const [loading, setLoading] = useState<Boolean>(false)
-  const [user, setUser] = useState<PropUser>({})
-
-  const getUser = async () => {
-    const result = await fetch('/api/user')
-    const res = await result.json()
-    setUser(res.data)
-  }
+  const [user, setUser] = useState<PropUser | null>(null);
 
   useEffect(() => {
-    getUser()
+    const fetchData = async () => {
+      try {
+        const result = await fetch('/api/user');
+        const res = await result.json();
+        setUser(res.data);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    };
+
+    fetchData();
   }, [])
+
+  if (user === null) {
+    return <div className='relative min-h-screen'><Loading /></div>
+  }
 
   return (
     <main className='my-16'>
