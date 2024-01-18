@@ -1,5 +1,6 @@
+'use client'
 import moment from 'moment'
-import { Fragment } from 'react'
+import { Fragment, memo } from 'react'
 import Tag from '@/components/Tag'
 
 const diffTime = (from: string, to: string) => {
@@ -12,7 +13,7 @@ const diffTime = (from: string, to: string) => {
   return diff
 }
 
-const ExpCard = ({ item }: { item: any }) => {
+const ExpCard = memo(({ item }: { item: any }) => {
   return (
     <div className='text-md text-neutral-400 font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
       <div className='p-4 group-hover/item:bg-neutral-800/[0.5] rounded-md'>
@@ -52,6 +53,6 @@ const ExpCard = ({ item }: { item: any }) => {
       </div>
     </div>
   )
-}
+})
 
 export default ExpCard

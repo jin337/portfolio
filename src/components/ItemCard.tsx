@@ -1,4 +1,7 @@
-const ItemCard = ({
+'use client'
+import { memo } from "react"
+
+const ItemCard = memo(({
   title = ' Title',
   icon,
   children,
@@ -21,6 +24,6 @@ const ItemCard = ({
       <div className='mt-3 text-neutral-400'>{children}</div>
     </div>
   )
-}
+})
 
 export default ItemCard

@@ -1,7 +1,8 @@
-import { Fragment } from 'react'
+'use client'
+import { Fragment, memo } from 'react'
 import { Github } from 'lucide-react'
 
-const ProCard = ({ item }: { item: any }) => {
+const ProCard = memo(({ item }: { item: any }) => {
   return (
     <div className='text-md text-neutral-400 font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
       <div className='group-hover/item:bg-neutral-800/[0.5]'>
@@ -41,6 +42,6 @@ const ProCard = ({ item }: { item: any }) => {
       </div>
     </div>
   )
-}
+})
 
 export default ProCard

@@ -1,4 +1,5 @@
-import { Fragment } from 'react'
+'use client'
+import { Fragment, memo } from 'react'
 import Image from 'next/image'
 import { Github, Linkedin } from 'lucide-react'
 
@@ -10,7 +11,7 @@ interface UserProps {
   name?: string
 }
 
-export default function User({ item }: { item: UserProps }) {
+const User = memo(({ item }: { item: UserProps }) => {
   return (
     <Fragment>
       <div className='flex flex-wrap justify-between items-end xs:items-center -mt-16'>
@@ -47,3 +48,6 @@ export default function User({ item }: { item: UserProps }) {
     </Fragment>
   )
 }
+)
+
+export default User
