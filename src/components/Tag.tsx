@@ -2,7 +2,7 @@
 import { memo } from "react"
 
 const Tag = memo(({ children }: { children: React.ReactNode }) => {
-  return <div className='text-sm px-2 py-[2px] text-neutral-400 bg-neutral-800 rounded-md'>{children}</div>
+  return <div className='text-sm px-2 py-[2px] bg-neutral-800 rounded-md'>{children}</div>
 }
 )
 export default Tag

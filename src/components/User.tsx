@@ -18,7 +18,7 @@ const User = memo(({ item }: { item: UserProps }) => {
         <div className='size-32 xs:size-48 relative rounded-full overflow-hidden border-8 border-neutral-900 select-none'>
           {item.cover && <Image className='object-cover' src={item.cover} priority fill sizes='100%' alt='cover' />}
         </div>
-        <div className='flex text-neutral-100'>
+        <div className='flex'>
           <a
             href={item.github_link}
             target='_blank'
@@ -37,7 +37,7 @@ const User = memo(({ item }: { item: UserProps }) => {
       </div>
 
       <div className='mt-4'>
-        <h3 className='text-xl text-neutral-400'>Hi, my name is</h3>
+        <h3 className='text-xl'>Hi, my name is</h3>
         <h1 className='text-5xl font-black'>
           <span className='bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-teal-500 to-cyan-500'>
             {item.name}

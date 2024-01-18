@@ -27,7 +27,7 @@ export default function Home() {
 
   const aboutElement = useMemo(() => {
     return (
-      <ul className='text-neutral-400 space-y-2'>
+      <ul className='space-y-2'>
         {user &&
           user.about &&
           Array.isArray(user.about) &&

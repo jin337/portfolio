@@ -16,7 +16,7 @@ const diffTime = (from: string, to: string) => {
 const ExpCard = memo(({ item }: { item: any }) => {
 
   return (
-    <div className='text-md text-neutral-400 font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
+    <div className='text-md font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
       <div className='p-4 group-hover/item:bg-neutral-800/[0.5] rounded-md'>
         <div className='flex flex-wrap'>
           <div className='flex size-16 border-dashed border rounded-md border-neutral-600 group-hover/item:border-solid mr-4'>

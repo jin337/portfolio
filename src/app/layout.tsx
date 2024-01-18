@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`bg-neutral-900 relative ${bricolage_Grotesque.className}`}>
+      <body className={`bg-neutral-900 text-neutral-400 relative ${bricolage_Grotesque.className}`}>
         {header}
         {children}
         {footer}

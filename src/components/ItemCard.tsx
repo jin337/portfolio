@@ -21,7 +21,7 @@ const ItemCard = memo(({
           <div className='w-full h-[3px] rounded-full absolute bottom-0 left-0 z-50 bg-gradient-to-r from-indigo-500 via-teal-500 to-cyan-500 transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-in-out'></div>
         </div>
       </div>
-      <div className='mt-3 text-neutral-400'>{children}</div>
+      <div className='mt-3'>{children}</div>
     </div>
   )
 })
