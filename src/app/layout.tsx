@@ -1,6 +1,6 @@
-import type { Metadata } from 'next'
 import { Bricolage_Grotesque } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+import type { Metadata } from 'next'
 
 import '@/styles/globals.css'
 
@@ -23,6 +23,7 @@ export default function RootLayout({
   footer: React.ReactNode
   children: React.ReactNode
 }) {
+
   return (
     <html lang='en'>
       <body className={`dark:bg-neutral-900 dark:text-neutral-400 relative ${bricolage_Grotesque.className}`}>

@@ -1,14 +1,18 @@
 'use client'
 import { Oswald } from 'next/font/google'
 import { Moon, Sun } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const fantasy = Oswald({
   weight: '600',
   subsets: ['latin'],
 })
 const Header = () => {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
+
+  useEffect(() => {
+    toggleDarkMode()
+  }, [])
 
   // 切换主题
   const toggleDarkMode = () => {
@@ -26,8 +30,8 @@ const Header = () => {
           <div className='size-16 flex items-center justify-center'>
             <span className={`dark:text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
           </div>
-          <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded' onClick={toggleDarkMode}>
-            {false ? <Moon size={20} /> : <Sun size={20} />}
+          <div className='text-neutral-50 cursor-pointer size-7 hover:dark:bg-neutral-700 flex items-center justify-center rounded' onClick={toggleDarkMode}>
+            {darkMode ? <Moon size={20} /> : <Sun size={20} />}
           </div>
         </div>
       </div>
