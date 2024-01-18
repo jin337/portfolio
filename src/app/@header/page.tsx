@@ -28,9 +28,9 @@ const Header = () => {
       <div className='wrap-container mx-auto'>
         <div className='flex justify-between items-center'>
           <div className='size-16 flex items-center justify-center'>
-            <span className={`dark:text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
+            <span className={`text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
           </div>
-          <div className='text-neutral-50 cursor-pointer size-7 hover:dark:bg-neutral-700 flex items-center justify-center rounded' onClick={toggleDarkMode}>
+          <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded' onClick={toggleDarkMode}>
             {darkMode ? <Moon size={20} /> : <Sun size={20} />}
           </div>
         </div>

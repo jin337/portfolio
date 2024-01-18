@@ -2,13 +2,13 @@
 import { ScanFace, Cookie, LayoutList, LibraryBig, Cable, Mail, Github, Linkedin } from 'lucide-react'
 import { Fragment, useEffect, useState, lazy, useMemo } from 'react'
 
+const SkeletonWrapper = lazy(() => import('@/components/SkeletonWrapper'))
 const Banner = lazy(() => import('@/components/Banner'))
 const User = lazy(() => import('@/components/User'))
 const ItemCard = lazy(() => import('@/components/ItemCard'))
 const ExpCard = lazy(() => import('@/components/ExpCard'))
 const ProCard = lazy(() => import('@/components/ProCard'))
 const Button = lazy(() => import('@/components/Button'))
-const Loading = lazy(() => import('@/components/Loading'))
 
 import { PropUser } from '@/types/user'
 
@@ -91,37 +91,48 @@ export default function Home() {
     )
   }, [user])
 
-  if (user === null) {
-    return <div className='relative min-h-screen'><Loading /></div>
-  }
 
   return (
     <main className='my-16'>
-      <Banner url={user.bannerbg} />
+      <SkeletonWrapper loading={!user}>
+        <Banner url={user?.bannerbg} />
+      </SkeletonWrapper>
       <main className='wrap-container mx-auto px-4'>
-        <User item={user} />
+        <SkeletonWrapper loading={!user}>
+          <User item={user || {}} />
+        </SkeletonWrapper>
 
-        <ItemCard title='About Me' icon={<ScanFace size={18} />}>
-          {aboutElement}
-        </ItemCard>
+        <SkeletonWrapper loading={!user}>
+          <ItemCard title='About Me' icon={<ScanFace size={18} />}>
+            {aboutElement}
+          </ItemCard>
+        </SkeletonWrapper>
 
-        <ItemCard title='Skills' icon={<Cookie size={18} />}>
-          <picture>
-            <img src={`https://skillicons.dev/icons?i=${user.skills}`} alt='skills' />
-          </picture>
-        </ItemCard>
+        <SkeletonWrapper loading={!user}>
+          <ItemCard title='Skills' icon={<Cookie size={18} />}>
+            <picture>
+              <img src={`https://skillicons.dev/icons?i=${user?.skills}`} alt='skills' />
+            </picture>
+          </ItemCard>
+        </SkeletonWrapper>
 
-        <ItemCard title='Experience' icon={<LibraryBig size={18} />}>
-          {experienceElement}
-        </ItemCard>
+        <SkeletonWrapper loading={!user}>
+          <ItemCard title='Experience' icon={<LibraryBig size={18} />}>
+            {experienceElement}
+          </ItemCard>
+        </SkeletonWrapper>
 
-        <ItemCard title='Projects' icon={<LayoutList size={18} />}>
-          {projectsElement}
-        </ItemCard>
+        <SkeletonWrapper loading={!user}>
+          <ItemCard title='Projects' icon={<LayoutList size={18} />}>
+            {projectsElement}
+          </ItemCard>
+        </SkeletonWrapper>
 
-        <ItemCard title='Contact Me' icon={<Cable size={18} />}>
-          {contactElement}
-        </ItemCard>
+        <SkeletonWrapper loading={!user}>
+          <ItemCard title='Contact Me' icon={<Cable size={18} />}>
+            {contactElement}
+          </ItemCard>
+        </SkeletonWrapper>
       </main>
     </main>
   )

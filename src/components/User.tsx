@@ -1,5 +1,5 @@
 'use client'
-import { Fragment, memo } from 'react'
+import { memo } from 'react'
 import Image from 'next/image'
 import { Github, Linkedin } from 'lucide-react'
 
@@ -13,7 +13,7 @@ interface UserProps {
 
 const User = memo(({ item }: { item: UserProps }) => {
   return (
-    <Fragment>
+    <>
       <div className='flex flex-wrap justify-between items-end xs:items-center -mt-16'>
         <div className='size-32 xs:size-48 relative rounded-full overflow-hidden border-8 dark:border-neutral-900 select-none'>
           {item.cover && <Image className='object-cover' src={item.cover} priority fill sizes='100%' alt='cover' />}
@@ -45,7 +45,7 @@ const User = memo(({ item }: { item: UserProps }) => {
         </h1>
         <h2 className='text-2xl dark:text-neutral-100 mt-2'>{item.slogn}</h2>
       </div>
-    </Fragment>
+    </>
   )
 }
 )

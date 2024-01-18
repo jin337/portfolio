@@ -1,7 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "react/jsx-one-expression-per-line": "off",
     "react/display-name": "off",
     "react-hooks/exhaustive-deps": "off"
   }
