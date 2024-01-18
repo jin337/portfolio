@@ -5,7 +5,7 @@ import { Github } from 'lucide-react'
 const ProCard = memo(({ item }: { item: any }) => {
   return (
     <div className='text-md font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
-      <div className='group-hover/item:bg-neutral-800/[0.5]'>
+      <div className='group-hover/item:dark:bg-neutral-800/[0.5]'>
         <div className='cursor-pointer overflow-hidden rounded-md'>
           <a href={item.link} target='_blank'>
             <picture>
@@ -23,7 +23,7 @@ const ProCard = memo(({ item }: { item: any }) => {
             <a
               href={item.github_link}
               target='_blank'
-              className='size-10 rounded-md border-neutral-600 flex items-center justify-center hover:border hover:bg-neutral-900'
+              className='size-10 rounded-md dark:border-neutral-600 flex items-center justify-center hover:border hover:dark:bg-neutral-900'
             >
               <Github size={18} />
             </a>
