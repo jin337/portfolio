@@ -31,10 +31,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       }
     } else if (req.method === 'POST') {
       const body = req.body;
-      const createdUser = await UserModel.create(body);
+      const user = await UserModel.findOne();
+      let createdUser
+      let msg
+      if (user) {
+        await UserModel.findByIdAndUpdate(user._id, body)
+        createdUser = body
+        msg = '更新成功'
+      } else {
+        createdUser = await UserModel.create(body);
+        msg = '添加成功'
+      }
       res.status(201).json({
         state: 201,
-        msg: '添加成功',
+        msg: msg,
         data: createdUser,
       });
     } else {

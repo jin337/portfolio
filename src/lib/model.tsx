@@ -13,6 +13,10 @@ const ExperienceSchema = new Schema({
     type: String,
     require: true,
   },
+  link: {
+    type: String,
+    require: true,
+  },
   job_type: {
     type: Number,
     require: true,
@@ -22,16 +26,16 @@ const ExperienceSchema = new Schema({
     type: String,
     require: true,
   },
-  time_form: {
+  start_form: {
     type: String,
     require: true,
   },
-  time_to: {
-    type: Number,
+  end_to: {
+    type: String,
     require: true,
   },
   description: {
-    type: String,
+    type: [String],
     require: true,
   },
   tag_list: {

@@ -14,17 +14,20 @@ const diffTime = (from: string, to: string) => {
 }
 
 const ExpCard = memo(({ item }: { item: any }) => {
+
   return (
     <div className='text-md text-neutral-400 font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
       <div className='p-4 group-hover/item:bg-neutral-800/[0.5] rounded-md'>
         <div className='flex flex-wrap'>
           <div className='flex size-16 border-dashed border rounded-md border-neutral-600 group-hover/item:border-solid mr-4'>
-            <picture className='flex items-center'>
-              <img className='object-contain p-2' src={item.logo} alt='logo' />
-            </picture>
+            <a href={item.link} target='_blank' className='flex items-center'>
+              <picture className='flex items-center'>
+                <img className='object-contain p-2' src={item.logo} alt='logo' />
+              </picture>
+            </a>
           </div>
           <div>
-            <div className='text-lg font-bold'>{item.position}</div>
+            <div className='text-lg font-bold'><a href={item.link} target='_blank'>{item.position}</a></div>
             <div className='text-base space-x-1'>
               <span>{item.job_type == 1 ? 'Full-time' : 'Part-time'}</span>
               <span>•</span>
@@ -40,7 +43,7 @@ const ExpCard = memo(({ item }: { item: any }) => {
           </div>
         </div>
         <div className='text-base border-t border-dashed border-neutral-600 mt-2 pt-2 group-hover/item:border-solid'>
-          {item.description}
+          {item.description?.map((e: string, i: number) => <p key={i}>{e}</p>)}
         </div>
         <div className='flex flex-wrap border-t border-dashed border-neutral-600 mt-2 pt-2 gap-1 group-hover/item:border-solid'>
           <span className='text-base'>Skills:</span>
