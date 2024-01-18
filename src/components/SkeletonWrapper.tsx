@@ -13,11 +13,7 @@ const SkeletonLayout = () => {
 
 const SkeletonWrapper = ({ loading, children }: { loading: boolean, children: ReactNode }) => {
 
-  return (
-    <div className={loading ? "skeleton" : ""}>
-      {loading ? <SkeletonLayout /> : children}
-    </div>
-  );
+  return loading ? <SkeletonLayout /> : children
 };
 
 export default SkeletonWrapper
