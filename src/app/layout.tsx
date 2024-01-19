@@ -14,22 +14,11 @@ export const metadata: Metadata = {
   description: 'Software Developer | Frontend Developer | Full Stack Web Developer',
 }
 
-export default function RootLayout({
-  header,
-  footer,
-  children,
-}: {
-  header: React.ReactNode
-  footer: React.ReactNode
-  children: React.ReactNode
-}) {
-
+export default function RootLayout({ children, }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
       <body className={`dark:bg-neutral-900 dark:text-neutral-400 relative ${font.className}`}>
-        {header}
         {children}
-        {footer}
         <Analytics />
       </body>
     </html>

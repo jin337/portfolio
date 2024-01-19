@@ -16,12 +16,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     if (req.method === 'GET') {
-      const user = await UserModel.findOne();
+      const user = await UserModel.find({ id: 1 });
       if (user) {
         res.status(200).json({
           state: 200,
           msg: '',
-          data: user,
+          data: {
+            en: user[0],
+            cn: user[1],
+          },
         });
       } else {
         res.status(404).json({
@@ -31,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       }
     } else if (req.method === 'POST') {
       const body = req.body;
-      const user = await UserModel.findOne();
+      const user = await UserModel.findOne({ id: body.id, type: body.type });
       let createdUser
       let msg
       if (user) {

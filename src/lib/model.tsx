@@ -74,6 +74,15 @@ const ProjectSchema = new Schema({
   },
 })
 const UserSchema = new Schema({
+  id: {
+    type: Number,
+    require: true,
+  },
+  type: {
+    type: String,
+    require: true,
+    enum: ['en', 'cn'],
+  },
   name: {
     type: String,
     require: true,

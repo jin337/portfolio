@@ -19,6 +19,8 @@ export interface proProps {
   link: string
 }
 export interface PropUser {
+  id?: number
+  type?: string
   cover?: string
   bannerbg?: string
   name?: string
@@ -32,8 +34,12 @@ export interface PropUser {
   experience_list?: ExpProps
   project_list?: proProps
 }
+export interface dataProps{
+  en?:PropUser
+  cn?:PropUser
+}
 export interface UserInfo {
   state: number | undefined
   msg: string | undefined
-  data?: PropUser
+  data?: dataProps
 }
