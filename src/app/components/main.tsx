@@ -11,7 +11,7 @@ const ProCard = lazy(() => import('@/components/ProCard'))
 const Button = lazy(() => import('@/components/Button'))
 
 import { PropUser } from '@/types/user'
-import { useAppSelector } from '@/hooks'
+import { useAppSelector } from '@/hooks/redux'
 
 export default function Main() {
   const common = useAppSelector(state => state.common.langageType)

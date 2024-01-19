@@ -2,7 +2,7 @@
 import { Oswald } from 'next/font/google'
 import { Moon, Sun, Languages } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import { setNewLanguages } from '@/store/reducers/common'
 
 const fantasy = Oswald({
@@ -66,7 +66,7 @@ const Header = () => {
             <span className={`text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
           </div>
           <div className='flex items-center justify-center'>
-            <div className='flex items-center justify-center text-neutral-50' onClick={toggleLanguage}>
+            <div className='flex items-center justify-center text-neutral-50 cursor-pointer' onClick={toggleLanguage}>
               <Languages size={20} />
               <span className='text-base ml-1'>{languages === 'en' ? 'EN' : 'CN'}</span>
             </div>

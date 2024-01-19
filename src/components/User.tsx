@@ -2,6 +2,7 @@
 import { memo } from 'react'
 import Image from 'next/image'
 import { Github, Linkedin } from 'lucide-react'
+import { useLocal } from '@/hooks/i18n';
 
 interface UserProps {
   cover?: string
@@ -37,7 +38,7 @@ const User = memo(({ item }: { item: UserProps }) => {
       </div>
 
       <div className='mt-4'>
-        <h3 className='text-xl'>Hi, my name is</h3>
+        <h3 className='text-xl'>{useLocal('welcome')}</h3>
         <h1 className='text-5xl font-black'>
           <span className='bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-teal-500 to-cyan-500'>
             {item.name}
