@@ -1,16 +1,18 @@
 'use client'
-import moment from 'moment'
-import { Fragment, memo } from 'react'
+import { format, differenceInYears, differenceInMonths, addMonths } from 'date-fns';
+
+import { memo } from 'react'
 import Tag from '@/components/Tag'
 
 const diffTime = (from: string, to: string) => {
-  let startDate = moment(from)
-  let endDate = moment(to)
-  const duration = moment.duration(endDate.add(1, 'month').diff(startDate))
-  const years = duration.years()
-  const months = duration.months()
-  const diff = `${years ? `${years} year${years > 1 ? 's' : ''}` : ''} ${months ? `${months} month${months > 1 ? 's' : ''}` : ''}`
-  return diff
+  const startDate = new Date(from);
+  const endDate = addMonths(new Date(to), 1);
+  const years = differenceInYears(endDate, startDate);
+  const months = differenceInMonths(endDate, startDate) % 12;
+  const yearString = years ? `${years} year${years > 1 ? 's' : ''}` : '';
+  const monthString = months ? `${months} month${months > 1 ? 's' : ''}` : '';
+  const diff = `${yearString} ${monthString}`.trim();
+  return diff;
 }
 
 const ExpCard = memo(({ item }: { item: any }) => {
@@ -34,9 +36,9 @@ const ExpCard = memo(({ item }: { item: any }) => {
               <span>{item.base}</span>
             </div>
             <div className='text-sm space-x-1'>
-              <span>{moment(item.start_form).format('MMM YYYY')}</span>
+              <span>{format(new Date(item.start_form), 'MMM yyyy')}</span>
               <span>-</span>
-              <span>{moment(item.end_to).format('MMM YYYY')}</span>
+              <span>{format(new Date(item.end_to), 'MMM yyyy')}</span>
               <span>•</span>
               <span>{diffTime(item.start_form, item.end_to)}</span>
             </div>

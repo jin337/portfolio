@@ -18,7 +18,7 @@ const config: Config = {
       },
       keyframes: {},
       animation: {
-        shimmer: 'shimmer 2s linear infinite',
+        shimmer: 'shimmer 1.4s ease infinite',
       },
     },
   },

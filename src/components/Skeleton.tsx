@@ -15,14 +15,15 @@ const Skeleton = ({ count, variant, className }: { count: number, variant: strin
     <div className="mb-8">
       {
         variant === 'text' && countList.map((item, index) => (
-          <div key={index} className={`animate-pulse mb-2 bg-gray-300 rounded ${className || 'h-5'} ${index == 0 ? 'w-1/3' : 'w-full'} ${index === count ? 'w-9/12' : 'w-full'}`}></div>
+          <div key={index} className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded
+          ${className || 'h-5'} ${index == 0 ? 'w-1/3' : ''} ${index === count ? 'w-9/12' : ''}`}></div>
         ))
       }
       {
-        variant === 'image' && <div className={`animate-pulse mb-2 bg-gray-300 rounded ${className || 'h-20'}`}></div>
+        variant === 'image' && <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded ${className || 'h-20'}`}></div>
       }
       {
-        variant === 'circle' && <div className={`animate-pulse mb-2 bg-gray-300 rounded-full ${className || 'size-2'}`}></div>
+        variant === 'circle' && <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded-full ${className || 'size-2'}`}></div>
       }
     </div>
   );

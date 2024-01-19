@@ -8,21 +8,26 @@ const fantasy = Oswald({
   subsets: ['latin'],
 })
 const Header = () => {
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode === null ? true : savedMode === 'true'
+  });
 
   useEffect(() => {
-    toggleDarkMode()
+    toggleDarkMode(darkMode);
   }, [])
 
   // 切换主题
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    if (darkMode) {
+  const toggleDarkMode = (mode: boolean) => {
+    setDarkMode(mode);
+    if (mode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
+    localStorage.setItem('darkMode', mode.toString());
   }
+
   return (
     <header className='w-full h-16 px-4 shadow-sm shadow-neutral-700 bg-neutral-900/60 fixed top-0 left-0 right-0 z-50'>
       <div className='wrap-container mx-auto'>
@@ -30,8 +35,8 @@ const Header = () => {
           <div className='size-16 flex items-center justify-center'>
             <span className={`text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
           </div>
-          <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded' onClick={toggleDarkMode}>
-            {darkMode ? <Moon size={20} /> : <Sun size={20} />}
+          <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded' onClick={() => toggleDarkMode(!darkMode)}>
+            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </div>
         </div>
       </div>
