@@ -8,24 +8,25 @@ const fantasy = Oswald({
   subsets: ['latin'],
 })
 const Header = () => {
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    const savedMode = localStorage.getItem('darkMode');
-    return savedMode === null ? true : savedMode === 'true'
-  });
+  const [darkMode, setDarkMode] = useState<boolean>(true);
 
   useEffect(() => {
-    toggleDarkMode(darkMode);
+    const savedMode = localStorage.getItem('darkMode');
+    const isDarkMode = savedMode === null ? true : savedMode === 'true';
+    setDarkMode(isDarkMode);
+    toggleDarkMode(isDarkMode);
   }, [])
 
   // 切换主题
   const toggleDarkMode = (mode: boolean) => {
-    setDarkMode(mode);
     if (mode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    localStorage.setItem('darkMode', mode.toString());
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('darkMode', mode.toString());
+    }
   }
 
   return (
