@@ -23,7 +23,7 @@ export default function Home() {
       setUser(res.data);
       setTimeout(() => {
         setLoading(false);
-      }, 500);
+      }, 1000);
     };
 
     fetchData();
