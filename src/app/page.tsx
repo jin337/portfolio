@@ -14,12 +14,16 @@ import { PropUser } from '@/types/user'
 
 export default function Home() {
   const [user, setUser] = useState<PropUser | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetch('/api/user');
       const res = await result.json();
       setUser(res.data);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     };
 
     fetchData();
