@@ -8,11 +8,11 @@ const fantasy = Oswald({
   subsets: ['latin'],
 })
 const Header = () => {
-  const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode');
-    const isDarkMode = savedMode === null ? true : savedMode === 'true';
+    const isDarkMode = savedMode === null ? false : savedMode === 'true';
     setDarkMode(isDarkMode);
     applyDarkMode(isDarkMode);
   }, []);
