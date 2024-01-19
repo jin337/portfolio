@@ -2,7 +2,7 @@
 import { ScanFace, Cookie, LayoutList, LibraryBig, Cable, Mail, Github, Linkedin } from 'lucide-react'
 import { Fragment, useEffect, useState, lazy, useMemo } from 'react'
 
-const SkeletonWrapper = lazy(() => import('@/components/SkeletonWrapper'))
+const Skeleton = lazy(() => import('@/components/Skeleton'))
 const Banner = lazy(() => import('@/components/Banner'))
 const User = lazy(() => import('@/components/User'))
 const ItemCard = lazy(() => import('@/components/ItemCard'))
@@ -94,45 +94,45 @@ export default function Home() {
 
   return (
     <main className='my-16'>
-      <SkeletonWrapper loading={!user}>
+      <Skeleton loading={!user} variant='image' className="h-52">
         <Banner url={user?.bannerbg} />
-      </SkeletonWrapper>
+      </Skeleton>
       <main className='wrap-container mx-auto px-4'>
-        <SkeletonWrapper loading={!user}>
+        <Skeleton loading={!user} count={2}>
           <User item={user || {}} />
-        </SkeletonWrapper>
+        </Skeleton>
 
-        <SkeletonWrapper loading={!user}>
+        <Skeleton loading={!user} count={4}>
           <ItemCard title='About Me' icon={<ScanFace size={18} />}>
             {aboutElement}
           </ItemCard>
-        </SkeletonWrapper>
+        </Skeleton>
 
-        <SkeletonWrapper loading={!user}>
+        <Skeleton loading={!user} variant='image' className="h-20">
           <ItemCard title='Skills' icon={<Cookie size={18} />}>
             <picture>
               <img src={`https://skillicons.dev/icons?i=${user?.skills}`} alt='skills' />
             </picture>
           </ItemCard>
-        </SkeletonWrapper>
+        </Skeleton>
 
-        <SkeletonWrapper loading={!user}>
+        <Skeleton loading={!user}>
           <ItemCard title='Experience' icon={<LibraryBig size={18} />}>
             {experienceElement}
           </ItemCard>
-        </SkeletonWrapper>
+        </Skeleton>
 
-        <SkeletonWrapper loading={!user}>
+        <Skeleton loading={!user}>
           <ItemCard title='Projects' icon={<LayoutList size={18} />}>
             {projectsElement}
           </ItemCard>
-        </SkeletonWrapper>
+        </Skeleton>
 
-        <SkeletonWrapper loading={!user}>
+        <Skeleton loading={!user}>
           <ItemCard title='Contact Me' icon={<Cable size={18} />}>
             {contactElement}
           </ItemCard>
-        </SkeletonWrapper>
+        </Skeleton>
       </main>
     </main>
   )

@@ -17,6 +17,9 @@ const config: Config = {
         xs: '450px',
       },
       keyframes: {},
+      animation: {
+        shimmer: 'shimmer 2s linear infinite',
+      },
     },
   },
   plugins: [],
