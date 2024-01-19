@@ -14,20 +14,25 @@ const Header = () => {
     const savedMode = localStorage.getItem('darkMode');
     const isDarkMode = savedMode === null ? true : savedMode === 'true';
     setDarkMode(isDarkMode);
-    toggleDarkMode(isDarkMode);
-  }, [])
+    applyDarkMode(isDarkMode);
+  }, []);
 
-  // 切换主题
-  const toggleDarkMode = (mode: boolean) => {
+  const applyDarkMode = (mode: boolean) => {
     if (mode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
+  };
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    applyDarkMode(newMode);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('darkMode', mode.toString());
+      localStorage.setItem('darkMode', newMode.toString());
     }
-  }
+  };
+
 
   return (
     <header className='w-full h-16 px-4 shadow-sm shadow-neutral-700 bg-neutral-900/60 fixed top-0 left-0 right-0 z-50'>
@@ -36,7 +41,7 @@ const Header = () => {
           <div className='size-16 flex items-center justify-center'>
             <span className={`text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
           </div>
-          <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded' onClick={() => toggleDarkMode(!darkMode)}>
+          <div className='text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 flex items-center justify-center rounded' onClick={toggleDarkMode}>
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </div>
         </div>
