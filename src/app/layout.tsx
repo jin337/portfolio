@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 import '@/styles/globals.css'
 
-const bricolage_Grotesque = Bricolage_Grotesque({
+const font = Bricolage_Grotesque({
   weight: '400',
   subsets: ['latin'],
 })
@@ -26,7 +26,7 @@ export default function RootLayout({
 
   return (
     <html lang='en'>
-      <body className={`dark:bg-neutral-900 dark:text-neutral-400 relative ${bricolage_Grotesque.className}`}>
+      <body className={`dark:bg-neutral-900 dark:text-neutral-400 relative ${font.className}`}>
         {header}
         {children}
         {footer}

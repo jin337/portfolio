@@ -48,9 +48,7 @@ const ExpCard = memo(({ item }: { item: any }) => {
         <div className='flex flex-wrap border-t border-dashed border-neutral-600 mt-2 pt-2 gap-1 group-hover/item:border-solid'>
           <span className='text-base'>Skills:</span>
           {item.tag_list.map((e: any, i: any) => (
-            <Fragment key={i}>
-              <Tag>{e}</Tag>
-            </Fragment>
+            <Tag key={i}>{e}</Tag>
           ))}
         </div>
       </div>

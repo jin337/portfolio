@@ -74,16 +74,16 @@ export default function Home() {
     return (
       <>
         <div className='flex space-x-4'>
-          <Button size='sm' icon={<Github size={24} />} link={user?.github_link}>
+          <Button size='sm' icon={<Github size={20} />} link={user?.github_link}>
             Github
           </Button>
-          <Button size='sm' icon={<Linkedin size={24} />} link={user?.linkedin_link}>
+          <Button size='sm' icon={<Linkedin size={20} />} link={user?.linkedin_link}>
             LinkedIn
           </Button>
         </div>
         <div className='text-sm my-4'>{user?.description}</div>
         <div className='flex justify-center'>
-          <Button icon={<Mail size={24} />} link={'mailto:' + user?.linkedin_link}>
+          <Button icon={<Mail size={20} />} link={'mailto:' + user?.linkedin_link}>
             Git in touch
           </Button>
         </div>
