@@ -1,3 +1,9 @@
 {
-  "welcome": "Hi, my name is"
+  "welcome": "Hi, my name is",
+  "about_me": "About Me",
+  "skills": "Skills",
+  "experience": "Experience",
+  "projects": "Projects",
+  "contact_me ": "Contact Me",
+  "git_in_touch ": "Git in touch"
 }

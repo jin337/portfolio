@@ -39,7 +39,7 @@ const User = memo(({ item }: { item: UserProps }) => {
 
       <div className='mt-4'>
         <h3 className='text-xl'>{useLocal('welcome')}</h3>
-        <h1 className='text-5xl font-black'>
+        <h1 className='text-5xl py-2 font-black'>
           <span className='bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-teal-500 to-cyan-500'>
             {item.name}
           </span>

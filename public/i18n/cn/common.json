@@ -1,3 +1,9 @@
 {
-  "welcome": "你好！我的名字是"
+  "welcome": "你好！我的名字是",
+  "about_me": "关于我",
+  "skills": "技术栈",
+  "experience": "工作经历",
+  "projects": "项目",
+  "contact_me ": "联系我",
+  "git_in_touch ": "保持联系"
 }

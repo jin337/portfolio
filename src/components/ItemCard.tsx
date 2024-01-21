@@ -13,7 +13,7 @@ const ItemCard = memo(({
   return (
     <div className='my-8 group overflow-hidden'>
       <div className='inline-block relative'>
-        <div className='flex items-center dark:text-neutral-200'>
+        <div className='flex pb-1 items-center dark:text-neutral-200'>
           <span className='text-2xl font-bold'>{title}</span>
           {icon && <span className='ml-2'>{icon}</span>}
         </div>

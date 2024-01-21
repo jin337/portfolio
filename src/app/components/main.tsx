@@ -14,7 +14,7 @@ import { PropUser } from '@/types/user'
 import { useAppSelector } from '@/hooks/redux'
 
 export default function Main() {
-  const common = useAppSelector(state => state.common.langageType)
+  const langageType = useAppSelector(state => state.common.langageType)
   const [userEN, setUserEN] = useState<PropUser | null>(null);
   const [userCN, setUserCN] = useState<PropUser | null>(null);
   const [user, setUser] = useState<PropUser | null>(null);
@@ -35,14 +35,14 @@ export default function Main() {
 
   useEffect(() => {
     const savedLangage = localStorage.getItem('language');
-    const isLangage = savedLangage === null ? common : savedLangage;
+    const isLangage = savedLangage === null ? langageType : savedLangage;
     fetchData(isLangage);
   }, [])
 
 
   useEffect(() => {
-    setUser(common == 'en' ? userEN : userCN);
-  }, [common])
+    setUser(langageType == 'en' ? userEN : userCN);
+  }, [langageType])
 
   const aboutElement = useMemo(() => {
     return (
