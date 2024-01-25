@@ -1,7 +1,8 @@
 'use client'
+import { memo } from 'react'
 import { format, differenceInYears, differenceInMonths, addMonths } from 'date-fns';
 
-import { memo } from 'react'
+import { useLocal } from '@/hooks/i18n';
 import Tag from '@/components/Tag'
 
 const diffTime = (from: string, to: string) => {
@@ -16,6 +17,8 @@ const diffTime = (from: string, to: string) => {
 }
 
 const ExpCard = memo(({ item }: { item: any }) => {
+  const fullTimeText = useLocal('full_time');
+  const partTimeText = useLocal('part_time');
 
   return (
     <div className='text-md font-medium border-dashed border rounded-md border-neutral-600 group/item hover:border-solid'>
@@ -31,7 +34,7 @@ const ExpCard = memo(({ item }: { item: any }) => {
           <div>
             <div className='text-lg font-bold'><a href={item.link} target='_blank'>{item.position}</a></div>
             <div className='text-base space-x-1'>
-              <span>{item.job_type == 1 ? 'Full-time' : 'Part-time'}</span>
+              <span>{item.job_type == 1 ? fullTimeText : partTimeText}</span>
               <span>•</span>
               <span>{item.base}</span>
             </div>

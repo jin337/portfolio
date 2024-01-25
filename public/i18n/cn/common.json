@@ -5,5 +5,9 @@
   "experience": "工作经历",
   "projects": "项目",
   "contact_me ": "联系我",
-  "git_in_touch ": "保持联系"
+  "git_in_touch ": "保持联系",
+  "full_time": "全职",
+  "part_time": "兼职",
+  "year": "年",
+  "month": "月"
 }
