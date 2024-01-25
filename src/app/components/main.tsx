@@ -51,7 +51,7 @@ export default function Main() {
           user.about &&
           Array.isArray(user.about) &&
           user.about.map((item, index) => (
-            <li key={index} className='text-lg'>
+            <li key={index} className={langageType=='en'?'text-lg':'text-base'}>
               {item}
             </li>
           ))}
