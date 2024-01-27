@@ -89,28 +89,6 @@ export default function Main() {
     )
   }, [user?.project_list])
 
-  const contactElement = useMemo(() => {
-    return (
-      <>
-        <div className='flex space-x-4'>
-          <Button size='sm' icon={<Github size={20} />} link={user?.github_link}>
-            Github
-          </Button>
-          <Button size='sm' icon={<Linkedin size={20} />} link={user?.linkedin_link}>
-            LinkedIn
-          </Button>
-        </div>
-        <div className='text-sm my-4'>{user?.description}</div>
-        <div className='flex justify-center'>
-          <Button icon={<Mail size={20} />} link={'mailto:' + user?.linkedin_link}>
-            Git in touch
-          </Button>
-        </div>
-      </>
-    )
-  }, [user])
-
-
   return (
     <main className='my-16'>
       <Skeleton loading={loading} variant='image' className="h-52">
@@ -144,12 +122,6 @@ export default function Main() {
         <Skeleton loading={loading}>
           <ItemCard title='Projects' icon={<LayoutList size={18} />}>
             {projectsElement}
-          </ItemCard>
-        </Skeleton>
-
-        <Skeleton loading={loading}>
-          <ItemCard title='Contact Me' icon={<Cable size={18} />}>
-            {contactElement}
           </ItemCard>
         </Skeleton>
       </main>

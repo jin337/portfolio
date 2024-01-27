@@ -1,13 +1,13 @@
 'use client'
 import { memo } from 'react'
 import Image from 'next/image'
-import { Github, Linkedin } from 'lucide-react'
+import { Github, Mail } from 'lucide-react'
 import { useLocal } from '@/hooks/i18n';
 
 interface UserProps {
   cover?: string
   github_link?: string
-  linkedin_link?: string
+  email?: string
   slogn?: string
   name?: string
 }
@@ -28,11 +28,11 @@ const User = memo(({ item }: { item: UserProps }) => {
             <Github size={18} />
           </a>
           <a
-            href={item.linkedin_link}
+            href={'mailto:' + item?.email}
             target='_blank'
             className='size-10 rounded-md dark:border-neutral-600 flex items-center justify-center hover:border hover:dark:bg-neutral-800'
           >
-            <Linkedin size={18} />
+            <Mail size={18} />
           </a>
         </div>
       </div>

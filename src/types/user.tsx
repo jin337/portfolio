@@ -26,7 +26,6 @@ export interface PropUser {
   name?: string
   slogn?: string
   github_link?: string
-  linkedin_link?: string
   email?: string
   description?: string
   about?: [string]
