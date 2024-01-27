@@ -27,7 +27,6 @@ export interface PropUser {
   slogn?: string
   github_link?: string
   email?: string
-  description?: string
   about?: [string]
   skills?: [string]
   experience_list?: ExpProps

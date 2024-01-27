@@ -107,10 +107,6 @@ const UserSchema = new Schema({
     type: String,
     require: true,
   },
-  description: {
-    type: String,
-    require: true,
-  },
   about: {
     type: [String],
     require: true,
