@@ -28,8 +28,8 @@ const Header = () => {
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? common : savedLangage;
     setLanguages(isLangage);
-    loadTranslations('cn')
     loadTranslations('en')
+    loadTranslations('cn')
 
     if (isLangage !== common) {
       dispatch(setNewLanguages(isLangage))
