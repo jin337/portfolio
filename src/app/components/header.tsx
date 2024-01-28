@@ -28,7 +28,9 @@ const Header = () => {
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? common : savedLangage;
     setLanguages(isLangage);
-    loadTranslations(isLangage)
+    loadTranslations('cn')
+    loadTranslations('en')
+
     if (isLangage !== common) {
       dispatch(setNewLanguages(isLangage))
     }
@@ -69,7 +71,6 @@ const Header = () => {
   const toggleLanguage = () => {
     const newLanguages = languages === 'en' ? 'cn' : 'en'
     setLanguages(newLanguages);
-    loadTranslations(newLanguages)
     dispatch(setNewLanguages(newLanguages))
     if (typeof window !== 'undefined') {
       localStorage.setItem('language', newLanguages.toString());
