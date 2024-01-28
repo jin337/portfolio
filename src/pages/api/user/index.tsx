@@ -18,12 +18,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (req.method === 'GET') {
       const user = await UserModel.find({ id: 1 });
       if (user) {
+        const userEN = user.find(e => e.type == 'en')
+        const userCN = user.find(e => e.type == 'cn')
         res.status(200).json({
           state: 200,
           msg: '',
           data: {
-            en: user[0],
-            cn: user[1],
+            en: userEN || {},
+            cn: userCN || {},
           },
         });
       } else {
