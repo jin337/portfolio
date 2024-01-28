@@ -3,7 +3,7 @@ import { StateProps } from '@/types/user';
 
 const initialState: StateProps = {
   languageType: 'en',
-  i18nContent: null
+  i18nContent: {}
 }
 
 export const common = createSlice({
@@ -13,9 +13,10 @@ export const common = createSlice({
     setNewLanguages: (state, action: PayloadAction<string>) => {
       state.languageType = action.payload
     },
-    setI18nContent: (state, action: PayloadAction<any>) => {
-      state.i18nContent = action.payload
-    },
+    setI18nContent: (state, action: PayloadAction<{ type: string, content: any }>) => {
+      const { type, content } = action.payload;
+      state.i18nContent[type] = content;
+    }
   }
 })
 

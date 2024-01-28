@@ -3,14 +3,16 @@ import { Oswald } from 'next/font/google'
 import { Moon, Sun, Languages } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
-import { setNewLanguages } from '@/store/reducers/common'
+import { setNewLanguages, setI18nContent } from '@/store/reducers/common'
 
 const fantasy = Oswald({
   weight: '600',
   subsets: ['latin'],
 })
+
 const Header = () => {
   const common = useAppSelector(state => state.common.languageType)
+  const i18nContent = useAppSelector(state => state.common.i18nContent)
   const dispatch = useAppDispatch()
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [languages, setLanguages] = useState<string>('en');
@@ -26,10 +28,25 @@ const Header = () => {
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? common : savedLangage;
     setLanguages(isLangage);
+    loadTranslations(isLangage)
     if (isLangage !== common) {
       dispatch(setNewLanguages(isLangage))
     }
   }, []);
+
+  // 获取语言数据
+  const loadTranslations = async (type: string) => {
+    const currentTranslations = i18nContent[type];
+    if (currentTranslations) {
+      return;
+    }
+    const response = await fetch(`/i18n/${type}/common.json`);
+    if (!response.ok) {
+      throw new Error(`Translation file not found: ${response.statusText}`);
+    }
+    const messages = await response.json();
+    dispatch(setI18nContent({ type, content: messages }));
+  };
 
   // 主题class切换
   const applyDarkMode = (mode: boolean) => {
@@ -52,6 +69,7 @@ const Header = () => {
   const toggleLanguage = () => {
     const newLanguages = languages === 'en' ? 'cn' : 'en'
     setLanguages(newLanguages);
+    loadTranslations(newLanguages)
     dispatch(setNewLanguages(newLanguages))
     if (typeof window !== 'undefined') {
       localStorage.setItem('language', newLanguages.toString());

@@ -43,5 +43,7 @@ export interface UserInfo {
 }
 export interface StateProps {
   languageType: string
-  i18nContent?: any | null
+  i18nContent: {
+    [key: string]: any;
+  };
 }
