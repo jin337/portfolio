@@ -1,13 +1,5 @@
 {
   "welcome": "Hi, my name is",
-  "about_me": "About Me",
-  "skills": "Skills",
-  "experience": "Experience",
-  "projects": "Projects",
-  "contact_me ": "Contact Me",
-  "git_in_touch ": "Git in touch",
   "full_time": "Full-time",
-  "part_time": "Part-time",
-  "year": "year",
-  "month": "month"
+  "part_time": "Part-time"
 }

@@ -1,5 +1,5 @@
 'use client'
-import { ScanFace, Cookie, LayoutList, LibraryBig, Cable, Mail, Github, Linkedin } from 'lucide-react'
+import { ScanFace, Cookie, LayoutList, LibraryBig } from 'lucide-react'
 import { Fragment, useEffect, useState, lazy, useMemo } from 'react'
 
 const Skeleton = lazy(() => import('@/components/Skeleton'))
@@ -8,13 +8,12 @@ const User = lazy(() => import('@/components/User'))
 const ItemCard = lazy(() => import('@/components/ItemCard'))
 const ExpCard = lazy(() => import('@/components/ExpCard'))
 const ProCard = lazy(() => import('@/components/ProCard'))
-const Button = lazy(() => import('@/components/Button'))
 
 import { PropUser } from '@/types/user'
 import { useAppSelector } from '@/hooks/redux'
 
 export default function Main() {
-  const langageType = useAppSelector(state => state.common.langageType)
+  const languageType = useAppSelector(state => state.common.languageType)
   const [userEN, setUserEN] = useState<PropUser | null>(null);
   const [userCN, setUserCN] = useState<PropUser | null>(null);
   const [user, setUser] = useState<PropUser | null>(null);
@@ -35,14 +34,14 @@ export default function Main() {
 
   useEffect(() => {
     const savedLangage = localStorage.getItem('language');
-    const isLangage = savedLangage === null ? langageType : savedLangage;
+    const isLangage = savedLangage === null ? languageType : savedLangage;
     fetchData(isLangage);
   }, [])
 
 
   useEffect(() => {
-    setUser(langageType == 'en' ? userEN : userCN);
-  }, [langageType])
+    setUser(languageType == 'en' ? userEN : userCN);
+  }, [languageType])
 
   const aboutElement = useMemo(() => {
     return (
@@ -51,7 +50,7 @@ export default function Main() {
           user.about &&
           Array.isArray(user.about) &&
           user.about.map((item, index) => (
-            <li key={index} className={langageType=='en'?'text-lg':'text-base'}>
+            <li key={index} className={languageType == 'en' ? 'text-lg' : 'text-base'}>
               {item}
             </li>
           ))}

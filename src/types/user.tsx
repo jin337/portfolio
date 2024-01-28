@@ -32,12 +32,16 @@ export interface PropUser {
   experience_list?: ExpProps
   project_list?: proProps
 }
-export interface dataProps{
-  en?:PropUser
-  cn?:PropUser
+export interface dataProps {
+  en?: PropUser
+  cn?: PropUser
 }
 export interface UserInfo {
   state: number | undefined
   msg: string | undefined
   data?: dataProps
+}
+export interface StateProps {
+  languageType: string
+  i18nContent?: any | null
 }

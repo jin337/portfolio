@@ -10,8 +10,8 @@ const fantasy = Oswald({
   subsets: ['latin'],
 })
 const Header = () => {
-  const common = useAppSelector(state => state.common.langageType)
-  const diapatch = useAppDispatch()
+  const common = useAppSelector(state => state.common.languageType)
+  const dispatch = useAppDispatch()
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [languages, setLanguages] = useState<string>('en');
 
@@ -27,7 +27,7 @@ const Header = () => {
     const isLangage = savedLangage === null ? common : savedLangage;
     setLanguages(isLangage);
     if (isLangage !== common) {
-      diapatch(setNewLanguages(isLangage))
+      dispatch(setNewLanguages(isLangage))
     }
   }, []);
 
@@ -52,7 +52,7 @@ const Header = () => {
   const toggleLanguage = () => {
     const newLanguages = languages === 'en' ? 'cn' : 'en'
     setLanguages(newLanguages);
-    diapatch(setNewLanguages(newLanguages))
+    dispatch(setNewLanguages(newLanguages))
     if (typeof window !== 'undefined') {
       localStorage.setItem('language', newLanguages.toString());
     }
