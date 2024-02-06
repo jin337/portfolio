@@ -118,7 +118,7 @@ export default function Main() {
           </ItemCard>
         </Skeleton>
 
-        <Skeleton loading={loading}>
+        <Skeleton loading={loading} variant='image' className="h-24">
           <ItemCard title='Projects' icon={<LayoutList size={18} />}>
             {projectsElement}
           </ItemCard>
