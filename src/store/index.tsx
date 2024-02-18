@@ -7,3 +7,8 @@ export const store = configureStore({
     common: commonReducer
   },
 });
+// 定义根 state 类型
+export type RootState = ReturnType<typeof store.getState>;
+
+// 定义 dispatch 类型
+export type AppDispatch = typeof store.dispatch;
