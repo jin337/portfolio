@@ -11,7 +11,7 @@ const fantasy = Oswald({
 })
 
 const Header = () => {
-  const common = useAppSelector(state => state.common.languageType)
+  const languageType = useAppSelector(state => state.common.languageType)
   const i18nContent = useAppSelector(state => state.common.i18nContent)
   const dispatch = useAppDispatch()
   const [darkMode, setDarkMode] = useState<boolean>(true);
@@ -24,15 +24,6 @@ const Header = () => {
     const isDarkMode = savedMode === null ? true : savedMode === 'true';
     toggleDarkMode(isDarkMode)
 
-    // 获取存储语言
-    const savedLangage = localStorage.getItem('language');
-    const isLangage = savedLangage === null ? common : savedLangage;
-    setLanguages(isLangage);
-
-    if (isLangage !== common) {
-      dispatch(setNewLanguages(isLangage))
-    }
-
     let i18nData = localStorage.getItem('i18nContent');
     if (i18nData) {
       const data = JSON.parse(i18nData)
@@ -42,6 +33,11 @@ const Header = () => {
       loadTranslations('en')
       loadTranslations('cn')
     }
+
+    // 获取存储语言
+    const savedLangage = localStorage.getItem('languageType');
+    const isLangage = savedLangage === null ? languages : JSON.parse(savedLangage);
+    toggleLanguage(isLangage == 'en' ? 'cn' : 'en')
   }, []);
 
   // 获取语言数据
@@ -58,23 +54,19 @@ const Header = () => {
     dispatch(setI18nContent({ type, content: data }));
   };
 
-  // 主题class切换
-  const applyDarkMode = (mode: boolean) => {
+  // 切换主题
+  const toggleDarkMode = (mode: boolean) => {
+    setDarkMode(mode);
     if (mode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  };
-  // 切换主题
-  const toggleDarkMode = (mode: boolean) => {
-    setDarkMode(mode);
-    applyDarkMode(mode);
     localStorage.setItem('darkMode', mode.toString());
   };
   // 切换语言
-  const toggleLanguage = () => {
-    const newLanguages = languages === 'en' ? 'cn' : 'en'
+  const toggleLanguage = (type: string) => {
+    const newLanguages = type === 'en' ? 'cn' : 'en'
     setLanguages(newLanguages);
     dispatch(setNewLanguages(newLanguages))
   }
@@ -87,7 +79,7 @@ const Header = () => {
             <span className={`text-neutral-50 text-3xl ${fantasy.className}`}>Jin</span>
           </div>
           <div className='flex items-center justify-center'>
-            <div className='flex items-center justify-center text-neutral-50 cursor-pointer' onClick={toggleLanguage}>
+            <div className='flex items-center justify-center text-neutral-50 cursor-pointer' onClick={() => toggleLanguage(languages)}>
               <Languages size={20} />
               <span className='text-base ml-1'>{languages === 'en' ? 'EN' : 'CN'}</span>
             </div>

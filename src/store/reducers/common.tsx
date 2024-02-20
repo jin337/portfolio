@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { StateProps } from '@/types/user';
 
 const initialState: StateProps = {
-  languageType: 'en',
+  languageType: null,
   i18nContent: {},
   userContent: {},
 }
