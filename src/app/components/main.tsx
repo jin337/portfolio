@@ -109,7 +109,7 @@ export default function Main() {
 
   return (
     <main className='my-16'>
-      <Skeleton loading={loading} variant='image' className="h-52">
+      <Skeleton loading={loading} variant='image' className="h-36 sm:h-44 md:h-52">
         <Banner url={user?.bannerbg} />
       </Skeleton>
       <main className='wrap-container mx-auto px-4'>
