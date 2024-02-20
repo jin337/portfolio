@@ -10,37 +10,47 @@ const ExpCard = lazy(() => import('@/components/ExpCard'))
 const ProCard = lazy(() => import('@/components/ProCard'))
 
 import { PropUser } from '@/types/user'
-import { useAppSelector } from '@/hooks/redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
+import { setUserContent } from '@/store/reducers/common'
 
 export default function Main() {
+  const dispatch = useAppDispatch()
   const languageType = useAppSelector(state => state.common.languageType)
-  const [userEN, setUserEN] = useState<PropUser | null>(null);
-  const [userCN, setUserCN] = useState<PropUser | null>(null);
+  const userContent = useAppSelector(state => state.common.userContent)
   const [user, setUser] = useState<PropUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async (type: string) => {
     const result = await fetch('/api/user');
     const res = await result.json();
-    const en = res.data.en
-    const cn = res.data.cn
-    setUser(type == 'en' ? en : cn);
-    setUserCN(cn)
-    setUserEN(en)
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    if (res.data) {
+      setUser(res.data[type]);
+      dispatch(setUserContent(res.data))
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
   };
 
   useEffect(() => {
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? languageType : savedLangage;
-    fetchData(isLangage);
+
+    const saveUserContent = localStorage.getItem('userContent');
+    if (saveUserContent) {
+      let data = JSON.parse(saveUserContent)
+      setUser(data[isLangage]);
+      dispatch(setUserContent(data))
+      setLoading(false);
+    } else {
+      fetchData(isLangage);
+    }
   }, [])
 
 
   useEffect(() => {
-    setUser(languageType == 'en' ? userEN : userCN);
+    setUser(userContent[languageType]);
   }, [languageType])
 
   const aboutElement = useMemo(() => {

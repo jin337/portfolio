@@ -3,7 +3,8 @@ import { StateProps } from '@/types/user';
 
 const initialState: StateProps = {
   languageType: 'en',
-  i18nContent: {}
+  i18nContent: {},
+  userContent: {},
 }
 
 export const common = createSlice({
@@ -16,10 +17,15 @@ export const common = createSlice({
     setI18nContent: (state, action: PayloadAction<{ type: string, content: any }>) => {
       const { type, content } = action.payload;
       state.i18nContent[type] = content;
+      localStorage.setItem('i18nContent', JSON.stringify(state.i18nContent))
+    },
+    setUserContent: (state, action: PayloadAction<any>) => {
+      state.userContent = action.payload
+      localStorage.setItem('userContent', JSON.stringify(state.userContent))
     }
   }
 })
 
-export const { setNewLanguages, setI18nContent } = common.actions
+export const { setNewLanguages, setI18nContent, setUserContent } = common.actions
 
 export default common.reducer

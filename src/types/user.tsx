@@ -57,4 +57,7 @@ export interface StateProps {
   i18nContent: {
     [key: string]: any;
   };
+  userContent: {
+    [key: string]: any;
+  };
 }

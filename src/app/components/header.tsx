@@ -28,8 +28,16 @@ const Header = () => {
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? common : savedLangage;
     setLanguages(isLangage);
-    loadTranslations('en')
-    loadTranslations('cn')
+
+    let i18nData = localStorage.getItem('i18nContent');
+    if (i18nData) {
+      const data = JSON.parse(i18nData)
+      dispatch(setI18nContent({ type: 'en', content: data.en }));
+      dispatch(setI18nContent({ type: 'cn', content: data.cn }));
+    } else {
+      loadTranslations('en')
+      loadTranslations('cn')
+    }
 
     if (isLangage !== common) {
       dispatch(setNewLanguages(isLangage))
@@ -46,8 +54,8 @@ const Header = () => {
     if (!response.ok) {
       throw new Error(`Translation file not found: ${response.statusText}`);
     }
-    const messages = await response.json();
-    dispatch(setI18nContent({ type, content: messages }));
+    const data = await response.json();
+    dispatch(setI18nContent({ type, content: data }));
   };
 
   // 主题class切换
