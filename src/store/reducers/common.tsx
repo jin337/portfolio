@@ -13,6 +13,7 @@ export const common = createSlice({
   reducers: {
     setNewLanguages: (state, action: PayloadAction<string>) => {
       state.languageType = action.payload
+      localStorage.setItem('languageType', JSON.stringify(state.languageType))
     },
     setI18nContent: (state, action: PayloadAction<{ type: string, content: any }>) => {
       const { type, content } = action.payload;

@@ -22,12 +22,16 @@ const Header = () => {
     // 获取存储主题
     const savedMode = localStorage.getItem('darkMode');
     const isDarkMode = savedMode === null ? true : savedMode === 'true';
-    setDarkMode(isDarkMode);
-    applyDarkMode(isDarkMode);
+    toggleDarkMode(isDarkMode)
+
     // 获取存储语言
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? common : savedLangage;
     setLanguages(isLangage);
+
+    if (isLangage !== common) {
+      dispatch(setNewLanguages(isLangage))
+    }
 
     let i18nData = localStorage.getItem('i18nContent');
     if (i18nData) {
@@ -37,10 +41,6 @@ const Header = () => {
     } else {
       loadTranslations('en')
       loadTranslations('cn')
-    }
-
-    if (isLangage !== common) {
-      dispatch(setNewLanguages(isLangage))
     }
   }, []);
 
@@ -67,22 +67,16 @@ const Header = () => {
     }
   };
   // 切换主题
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    applyDarkMode(newMode);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('darkMode', newMode.toString());
-    }
+  const toggleDarkMode = (mode: boolean) => {
+    setDarkMode(mode);
+    applyDarkMode(mode);
+    localStorage.setItem('darkMode', mode.toString());
   };
   // 切换语言
   const toggleLanguage = () => {
     const newLanguages = languages === 'en' ? 'cn' : 'en'
     setLanguages(newLanguages);
     dispatch(setNewLanguages(newLanguages))
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('language', newLanguages.toString());
-    }
   }
 
   return (
@@ -97,7 +91,8 @@ const Header = () => {
               <Languages size={20} />
               <span className='text-base ml-1'>{languages === 'en' ? 'EN' : 'CN'}</span>
             </div>
-            <div className='flex items-center justify-center text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 rounded ml-5' onClick={toggleDarkMode}>
+            <div className='flex items-center justify-center text-neutral-50 cursor-pointer size-7 hover:bg-neutral-700 rounded ml-5'
+              onClick={() => toggleDarkMode(!darkMode)}>
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </div>
           </div>
