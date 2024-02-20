@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { SkeletoProp } from '@/types/user'
 
 // 组类型
-const Group = ({ group = 1, children, ...rest }: SkeletoProp) => {
+const Group = ({ group = 1, className, children }: SkeletoProp) => {
   const [groupList, setGroupList] = useState([])
 
   useEffect(() => {
@@ -12,12 +12,17 @@ const Group = ({ group = 1, children, ...rest }: SkeletoProp) => {
   }, [group])
 
   return (
-    groupList.map((item, index) => <div key={index} {...rest}>{children}</div>)
+    group > 1 ?
+      <div className={`${className || ''}`}>
+        {
+          groupList.map((item, index) => <div key={index}>{children}</div>)
+        }
+      </div> : <div className="mb-8">{children}</div>
   )
 }
 
 // 文字类型
-const TextType = ({ className, count = 2, ...rest }: SkeletoProp) => {
+const TextType = ({ count = 2 }: SkeletoProp) => {
   const [countList, setCountList] = useState([])
 
   useEffect(() => {
@@ -26,62 +31,48 @@ const TextType = ({ className, count = 2, ...rest }: SkeletoProp) => {
   }, [count])
 
   return (
-    <Group className="mb-4" {...rest}>
+    <div>
       {
         countList.map((item, index) => (
-          <div key={index} className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded
-        ${className || 'h-5'} ${index == 0 ? 'w-1/3' : ''} ${index === count ? 'w-9/12' : ''} `}></div>
+          <div key={index} className={`animate-shimmer rounded mb-2 h-5 ${index == 0 ? 'w-1/3' : ''} ${index === count ? 'w-9/12' : ''} `}></div>
         ))
       }
-    </Group>
+    </div>
   )
 }
 
 // 卡片类型
-const CardType = ({ className, count = 2, ...rest }: SkeletoProp) => {
-  const [countList, setCountList] = useState([])
-
-  useEffect(() => {
-    let countNumber: number[] = new Array(count + 1).fill(' ')
-    setCountList(countNumber as any)
-  }, [count])
-
+const CardType = ({ className }: SkeletoProp) => {
   return (
-    <div className='columns-1 xs:columns-2 space-y-4 gap-4' >
-      <Group {...rest}>
-        <ImageType className={className} />
-        {
-          countList.map((item, index) => (
-            <div key={index} className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded h-5 ${index == 0 ? 'w-1/3' : ''} ${index === 2 ? 'w-9/12' : ''}`}></div>
-          ))
-        }
-      </Group>
-    </div>
+    <>
+      <ImageType className={`${className} mb-2`} />
+      <TextType />
+    </>
   )
 }
 
 // 图片类型
 const ImageType = ({ className }: SkeletoProp) => {
   return (
-    <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded ${className || 'h-20'}`}></div>
+    <div className={`animate-shimmer rounded ${className || 'h-20'}`}></div>
   )
 }
 
 // 圆形图片类型
 const CircleType = ({ className }: SkeletoProp) => {
   return (
-    <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded-full ${className || 'size-2'}`}></div>
+    <div className={`animate-shimmer rounded-full ${className || 'size-2'}`}></div>
   )
 }
 
-const SkeletonWrapper = ({ loading, children, variant = 'text', ...rest }: SkeletoProp) => {
+const SkeletonWrapper = ({ children, loading, variant = 'text', group = 1, groupClassName, ...rest }: SkeletoProp) => {
   return loading ? (
-    <div className="mb-8">
-      {variant === 'text' && <TextType  {...rest} />}
-      {variant === 'image' && <ImageType  {...rest} />}
-      {variant === 'circle' && <CircleType  {...rest} />}
-      {variant === 'card' && <CardType {...rest} />}
-    </div>
+    <>
+      {variant === 'text' && <Group group={group} className={`${groupClassName}`}><TextType {...rest} /></Group >}
+      {variant === 'image' && <Group group={group} className={`${groupClassName}`}><ImageType {...rest} /></Group>}
+      {variant === 'circle' && <Group group={group} className={`${groupClassName}`}><CircleType {...rest} /></Group>}
+      {variant === 'card' && <Group group={group} className={`${groupClassName}`}><CardType {...rest} /></Group>}
+    </>
   ) : children
 };
 

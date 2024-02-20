@@ -35,7 +35,7 @@ export default function Main() {
   useEffect(() => {
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? languageType : savedLangage;
-    // fetchData(isLangage);
+    fetchData(isLangage);
   }, [])
 
 
@@ -113,13 +113,13 @@ export default function Main() {
           </ItemCard>
         </Skeleton>
 
-        <Skeleton loading={loading} group={2} count={4}>
+        <Skeleton loading={loading} group={2} count={3} groupClassName='space-y-4 mb-8'>
           <ItemCard title='Experience' icon={<LibraryBig size={18} />}>
             {experienceElement}
           </ItemCard>
         </Skeleton>
 
-        <Skeleton loading={loading} variant='card' group={2} className="h-48">
+        <Skeleton loading={loading} variant='card' group={2} className="h-48" groupClassName='columns-1 xs:columns-2 gap-4'>
           <ItemCard title='Projects' icon={<LayoutList size={18} />}>
             {projectsElement}
           </ItemCard>

@@ -6,6 +6,7 @@ export interface SkeletoProp {
   group?: number
   variant?: string
   className?: string
+  groupClassName?: string
   children?: ReactNode
 }
 export interface ExpProps {

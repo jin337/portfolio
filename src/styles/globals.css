@@ -31,6 +31,8 @@ body {
     background-position: 0 50%;
   }
 }
+
 .animate-shimmer {
+  @apply delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100;
   background-size: 400% 100%;
 }
