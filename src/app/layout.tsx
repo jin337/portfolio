@@ -19,7 +19,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
     <html lang='en' className="dark">
       <body className={`dark:bg-neutral-900 dark:text-neutral-400 relative ${font.className}`}>
         {children}
-        {/* <Analytics /> */}
+        <Analytics />
       </body>
     </html>
   )
