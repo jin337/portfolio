@@ -35,7 +35,7 @@ export default function Main() {
   useEffect(() => {
     const savedLangage = localStorage.getItem('language');
     const isLangage = savedLangage === null ? languageType : savedLangage;
-    fetchData(isLangage);
+    // fetchData(isLangage);
   }, [])
 
 
@@ -94,7 +94,8 @@ export default function Main() {
         <Banner url={user?.bannerbg} />
       </Skeleton>
       <main className='wrap-container mx-auto px-4'>
-        <Skeleton loading={loading} count={2}>
+        <Skeleton loading={loading} variant='circle' className="size-32 xs:size-48 -mt-24" />
+        <Skeleton loading={loading}>
           <User item={user || {}} />
         </Skeleton>
 
@@ -112,13 +113,13 @@ export default function Main() {
           </ItemCard>
         </Skeleton>
 
-        <Skeleton loading={loading}>
+        <Skeleton loading={loading} group={2} count={4}>
           <ItemCard title='Experience' icon={<LibraryBig size={18} />}>
             {experienceElement}
           </ItemCard>
         </Skeleton>
 
-        <Skeleton loading={loading} variant='image' className="h-24">
+        <Skeleton loading={loading} variant='card' group={2} className="h-48">
           <ItemCard title='Projects' icon={<LayoutList size={18} />}>
             {projectsElement}
           </ItemCard>

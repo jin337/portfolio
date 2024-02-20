@@ -1,3 +1,13 @@
+import { ReactNode } from "react";
+
+export interface SkeletoProp {
+  loading?: boolean
+  count?: number
+  group?: number
+  variant?: string
+  className?: string
+  children?: ReactNode
+}
 export interface ExpProps {
   id: number
   logo: string

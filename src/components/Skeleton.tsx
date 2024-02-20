@@ -1,38 +1,88 @@
 'use client'
-import { ReactNode } from "react";
+import { useEffect, useState } from "react";
+import { SkeletoProp } from '@/types/user'
 
-interface Prop {
-  loading?: boolean
-  count?: number
-  variant?: string
-  className?: string
-  children?: ReactNode
+// 组类型
+const Group = ({ group = 1, children, ...rest }: SkeletoProp) => {
+  const [groupList, setGroupList] = useState([])
+
+  useEffect(() => {
+    let groupNumber: number[] = new Array(group).fill(' ')
+    setGroupList(groupNumber as any)
+  }, [group])
+
+  return (
+    groupList.map((item, index) => <div key={index} {...rest}>{children}</div>)
+  )
 }
 
-const Skeleton = ({ count, variant, className }: { count: number, variant: string, className?: string }) => {
-  const countList = new Array(count + 1).fill('')
+// 文字类型
+const TextType = ({ className, count = 2, ...rest }: SkeletoProp) => {
+  const [countList, setCountList] = useState([])
+
+  useEffect(() => {
+    let countNumber: number[] = new Array(count + 1).fill(' ')
+    setCountList(countNumber as any)
+  }, [count])
+
   return (
-    <div className="mb-8">
+    <Group className="mb-4" {...rest}>
       {
-        variant === 'text' && countList.map((item, index) => (
+        countList.map((item, index) => (
           <div key={index} className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded
-          ${className || 'h-5'} ${index == 0 ? 'w-1/3' : ''} ${index === count ? 'w-9/12' : ''}`}></div>
+        ${className || 'h-5'} ${index == 0 ? 'w-1/3' : ''} ${index === count ? 'w-9/12' : ''} `}></div>
         ))
       }
-      {
-        variant === 'image' && <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded ${className || 'h-20'}`}></div>
-      }
-      {
-        variant === 'circle' && <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded-full ${className || 'size-2'}`}></div>
-      }
+    </Group>
+  )
+}
+
+// 卡片类型
+const CardType = ({ className, count = 2, ...rest }: SkeletoProp) => {
+  const [countList, setCountList] = useState([])
+
+  useEffect(() => {
+    let countNumber: number[] = new Array(count + 1).fill(' ')
+    setCountList(countNumber as any)
+  }, [count])
+
+  return (
+    <div className='columns-1 xs:columns-2 space-y-4 gap-4' >
+      <Group {...rest}>
+        <ImageType className={className} />
+        {
+          countList.map((item, index) => (
+            <div key={index} className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded h-5 ${index == 0 ? 'w-1/3' : ''} ${index === 2 ? 'w-9/12' : ''}`}></div>
+          ))
+        }
+      </Group>
     </div>
-  );
-};
+  )
+}
 
+// 图片类型
+const ImageType = ({ className }: SkeletoProp) => {
+  return (
+    <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded ${className || 'h-20'}`}></div>
+  )
+}
 
-const SkeletonWrapper = ({ loading, count = 3, variant = 'text', className, children }: Prop) => {
+// 圆形图片类型
+const CircleType = ({ className }: SkeletoProp) => {
+  return (
+    <div className={`animate-shimmer delay-100 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100 mb-2 rounded-full ${className || 'size-2'}`}></div>
+  )
+}
 
-  return loading ? <Skeleton count={count} variant={variant} className={className} /> : children
+const SkeletonWrapper = ({ loading, children, variant = 'text', ...rest }: SkeletoProp) => {
+  return loading ? (
+    <div className="mb-8">
+      {variant === 'text' && <TextType  {...rest} />}
+      {variant === 'image' && <ImageType  {...rest} />}
+      {variant === 'circle' && <CircleType  {...rest} />}
+      {variant === 'card' && <CardType {...rest} />}
+    </div>
+  ) : children
 };
 
 export default SkeletonWrapper
