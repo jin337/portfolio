@@ -1,18 +1,12 @@
 'use client'
-import { useEffect, useState } from "react";
 import { SkeletoProp } from '@/types/user'
 
 // 组类型
 const Group = ({ group = 1, className, children }: SkeletoProp) => {
-  const [groupList, setGroupList] = useState([])
-
-  useEffect(() => {
-    let groupNumber: number[] = new Array(group).fill(' ')
-    setGroupList(groupNumber as any)
-  }, [group])
+  const groupList = new Array(group).fill(' ')
 
   return (
-    group > 1 ?
+    group != 1 ?
       <div className={`${className || ''}`}>
         {
           groupList.map((item, index) => <div key={index}>{children}</div>)
@@ -23,12 +17,7 @@ const Group = ({ group = 1, className, children }: SkeletoProp) => {
 
 // 文字类型
 const TextType = ({ count = 2 }: SkeletoProp) => {
-  const [countList, setCountList] = useState([])
-
-  useEffect(() => {
-    let countNumber: number[] = new Array(count + 1).fill(' ')
-    setCountList(countNumber as any)
-  }, [count])
+  const countList = new Array(count + 1).fill(' ')
 
   return (
     <div>

@@ -11,10 +11,11 @@ const ProCard = lazy(() => import('@/components/ProCard'))
 
 import { PropUser } from '@/types/user'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
-import { setUserContent } from '@/store/reducers/common'
+import { setUserContent, setI18nContent } from '@/store/reducers/common'
 
 export default function Main() {
   const dispatch = useAppDispatch()
+  const i18nContent = useAppSelector(state => state.common.i18nContent)
   const languageType = useAppSelector(state => state.common.languageType)
   const userContent = useAppSelector(state => state.common.userContent)
   const [user, setUser] = useState<PropUser | null>(null);
@@ -33,10 +34,27 @@ export default function Main() {
     }
   };
 
+  // 获取语言数据
+  const loadTranslations = async (type: string) => {
+    const currentTranslations = i18nContent[type];
+    if (currentTranslations) {
+      return;
+    }
+    const response = await fetch(`/i18n/${type}/common.json`);
+    if (!response.ok) {
+      throw new Error(`Translation file not found: ${response.statusText}`);
+    }
+    const data = await response.json();
+    dispatch(setI18nContent({ type, content: data }));
+  };
+
   useEffect(() => {
     const savedLangage = localStorage.getItem('languageType');
     const isLangage = savedLangage === null ? languageType : JSON.parse(savedLangage);
     fetchData(isLangage);
+
+    loadTranslations('en')
+    loadTranslations('cn')
   }, [])
 
 
