@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { StateProps } from '@/types/user';
 
 const initialState: StateProps = {
-  languageType: null,
+  languageType: 'en',
   i18nContent: {},
   userContent: {},
 }
@@ -13,16 +13,13 @@ export const common = createSlice({
   reducers: {
     setNewLanguages: (state, action: PayloadAction<string>) => {
       state.languageType = action.payload
-      localStorage.setItem('languageType', JSON.stringify(state.languageType))
     },
     setI18nContent: (state, action: PayloadAction<{ type: string, content: any }>) => {
       const { type, content } = action.payload;
       state.i18nContent[type] = content;
-      localStorage.setItem('i18nContent', JSON.stringify(state.i18nContent))
     },
     setUserContent: (state, action: PayloadAction<any>) => {
       state.userContent = action.payload
-      localStorage.setItem('userContent', JSON.stringify(state.userContent))
     }
   }
 })

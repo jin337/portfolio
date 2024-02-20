@@ -53,7 +53,7 @@ export interface UserInfo {
   data?: dataProps
 }
 export interface StateProps {
-  languageType: string | null
+  languageType: string
   i18nContent: {
     [key: string]: any;
   };

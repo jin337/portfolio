@@ -23,15 +23,8 @@ const Header = () => {
     const isDarkMode = savedMode === null ? true : savedMode === 'true';
     toggleDarkMode(isDarkMode)
 
-    let i18nData = localStorage.getItem('i18nContent');
-    if (i18nData) {
-      const data = JSON.parse(i18nData)
-      dispatch(setI18nContent({ type: 'en', content: data.en }));
-      dispatch(setI18nContent({ type: 'cn', content: data.cn }));
-    } else {
-      loadTranslations('en')
-      loadTranslations('cn')
-    }
+    loadTranslations('en')
+    loadTranslations('cn')
 
     // 获取存储语言
     const savedLangage = localStorage.getItem('languageType');
@@ -68,6 +61,7 @@ const Header = () => {
     const newLanguages = type === 'en' ? 'cn' : 'en'
     setLanguages(newLanguages);
     dispatch(setNewLanguages(newLanguages))
+    localStorage.setItem('languageType', JSON.stringify(newLanguages))
   }
 
   return (

@@ -38,3 +38,4 @@ next-env.d.ts
 /.env.local
 /public/locales/cn
 /pnpm-lock.yaml
+/.eslintcache

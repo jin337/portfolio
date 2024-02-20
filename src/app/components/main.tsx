@@ -36,21 +36,12 @@ export default function Main() {
   useEffect(() => {
     const savedLangage = localStorage.getItem('languageType');
     const isLangage = savedLangage === null ? languageType : JSON.parse(savedLangage);
-
-    const saveUserContent = localStorage.getItem('userContent');
-    if (saveUserContent) {
-      let data = JSON.parse(saveUserContent)
-      setUser(data[isLangage]);
-      dispatch(setUserContent(data))
-      setLoading(false);
-    } else {
-      fetchData(isLangage);
-    }
+    fetchData(isLangage);
   }, [])
 
 
   useEffect(() => {
-    setUser(userContent[languageType || 'en']);
+    setUser(userContent[languageType]);
   }, [languageType])
 
   const aboutElement = useMemo(() => {
