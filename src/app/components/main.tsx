@@ -34,8 +34,8 @@ export default function Main() {
   };
 
   useEffect(() => {
-    const savedLangage = localStorage.getItem('language');
-    const isLangage = savedLangage === null ? languageType : savedLangage;
+    const savedLangage = localStorage.getItem('languageType');
+    const isLangage = savedLangage === null ? languageType : JSON.parse(savedLangage);
 
     const saveUserContent = localStorage.getItem('userContent');
     if (saveUserContent) {
@@ -50,7 +50,7 @@ export default function Main() {
 
 
   useEffect(() => {
-    setUser(userContent[languageType]);
+    setUser(userContent[languageType || 'en']);
   }, [languageType])
 
   const aboutElement = useMemo(() => {

@@ -11,7 +11,6 @@ const fantasy = Oswald({
 })
 
 const Header = () => {
-  const languageType = useAppSelector(state => state.common.languageType)
   const i18nContent = useAppSelector(state => state.common.i18nContent)
   const dispatch = useAppDispatch()
   const [darkMode, setDarkMode] = useState<boolean>(true);
