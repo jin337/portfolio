@@ -37,6 +37,7 @@ export interface PropUser {
   name?: string
   slogn?: string
   github_link?: string
+  twitter_link?: string
   email?: string
   about?: [string]
   skills?: [string]

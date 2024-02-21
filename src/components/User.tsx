@@ -1,18 +1,27 @@
 'use client'
 import { memo } from 'react'
 import Image from 'next/image'
-import { Github, Mail } from 'lucide-react'
+import { Github, Mail, Twitter } from 'lucide-react'
 import { useLocal } from '@/hooks/i18n';
 
-interface UserProps {
-  cover?: string
-  github_link?: string
-  email?: string
-  slogn?: string
-  name?: string
-}
+import { PropUser } from '@/types/user'
 
-const User = memo(({ item }: { item: UserProps }) => {
+const User = memo(({ item }: { item: PropUser }) => {
+
+  const list = [
+    {
+      icon: <Twitter size={18} />,
+      link: item.twitter_link
+    },
+    {
+      icon: <Github size={18} />,
+      link: item.github_link
+    },
+    {
+      icon: <Mail size={18} />,
+      link: 'mailto:' + item?.email
+    },
+  ]
   return (
     <>
       <div className='flex flex-wrap justify-between items-end xs:items-center -mt-16'>
@@ -20,20 +29,14 @@ const User = memo(({ item }: { item: UserProps }) => {
           {item.cover && <Image className='object-cover' src={item.cover} priority fill sizes='100%' alt='cover' />}
         </div>
         <div className='flex'>
-          <a
-            href={item.github_link}
-            target='_blank'
-            className='size-10 rounded-md dark:border-neutral-600 flex items-center justify-center hover:border hover:dark:bg-neutral-800'
-          >
-            <Github size={18} />
-          </a>
-          <a
-            href={'mailto:' + item?.email}
-            target='_blank'
-            className='size-10 rounded-md dark:border-neutral-600 flex items-center justify-center hover:border hover:dark:bg-neutral-800'
-          >
-            <Mail size={18} />
-          </a>
+          {
+            list.map((i, index) => <a key={index}
+              href={i.link}
+              target='_blank'
+              className='size-10 rounded-md dark:border-neutral-600 flex items-center justify-center hover:border hover:dark:bg-neutral-800'>
+              {i.icon}
+            </a>)
+          }
         </div>
       </div>
 

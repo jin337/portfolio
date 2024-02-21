@@ -103,6 +103,10 @@ const UserSchema = new Schema({
     type: String,
     require: true,
   },
+  twitter_link: {
+    type: String,
+    require: true,
+  },
   bannerbg: {
     type: String,
     require: true,
