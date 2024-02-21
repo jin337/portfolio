@@ -7,8 +7,9 @@ export interface ExpProps {
   base: string
   start_form: string
   end_to: string
-  description: string
+  description: [string]
   tag_list: [string]
+  link?: string
   children?: ReactNode
 }
 

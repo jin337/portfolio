@@ -51,7 +51,7 @@ const ExpCard = ({ item }: { item: ExpProps }) => {
         </div>
         <div className='flex flex-wrap border-t border-dashed border-neutral-600 mt-2 pt-2 gap-1 group-hover/item:border-solid'>
           <span className='text-base'>Skills:</span>
-          {item.tag_list.map((e: any, i: any) => (
+          {item.tag_list?.map((e: any, i: any) => (
             <Tag key={i}>{e}</Tag>
           ))}
         </div>
