@@ -1,8 +1,7 @@
 'use client'
-import { memo } from 'react'
 import { format, differenceInYears, differenceInMonths, addMonths } from 'date-fns';
-
 import { useLocal } from '@/hooks/i18n';
+import { ExpProps } from '@/types/user'
 import Tag from '@/components/Tag'
 
 const diffTime = (from: string, to: string) => {
@@ -16,7 +15,7 @@ const diffTime = (from: string, to: string) => {
   return diff;
 }
 
-const ExpCard = memo(({ item }: { item: any }) => {
+const ExpCard = ({ item }: { item: ExpProps }) => {
   const fullTimeText = useLocal('full_time');
   const partTimeText = useLocal('part_time');
 
@@ -59,6 +58,6 @@ const ExpCard = memo(({ item }: { item: any }) => {
       </div>
     </div>
   )
-})
+}
 
 export default ExpCard

@@ -1,14 +1,4 @@
 import { ReactNode } from "react";
-
-export interface SkeletoProp {
-  loading?: boolean
-  count?: number
-  group?: number
-  variant?: string
-  className?: string
-  groupClassName?: string
-  children?: ReactNode
-}
 export interface ExpProps {
   id: number
   logo: string
@@ -19,7 +9,9 @@ export interface ExpProps {
   end_to: string
   description: string
   tag_list: [string]
+  children?: ReactNode
 }
+
 export interface proProps {
   id: number
   cover: string
@@ -28,8 +20,10 @@ export interface proProps {
   tag_list: [string]
   github_link: string
   link: string
+  children?: ReactNode
 }
-export interface PropUser {
+
+export interface UserProp {
   id?: number
   type?: string
   cover?: string
@@ -43,16 +37,20 @@ export interface PropUser {
   skills?: [string]
   experience_list?: ExpProps
   project_list?: proProps
+  children?: ReactNode
 }
+
 export interface dataProps {
-  en?: PropUser
-  cn?: PropUser
+  en?: UserProp
+  cn?: UserProp
 }
+
 export interface UserInfo {
   state: number | undefined
   msg: string | undefined
   data?: dataProps
 }
+
 export interface StateProps {
   languageType: string
   i18nContent: {
@@ -61,4 +59,25 @@ export interface StateProps {
   userContent: {
     [key: string]: any;
   };
+}
+
+export interface SkeletoProp {
+  loading?: boolean
+  count?: number
+  group?: number
+  variant?: string
+  className?: string
+  groupClassName?: string
+  children?: ReactNode
+}
+export interface CardProp {
+  title: string
+  icon?: ReactNode
+  children?: ReactNode
+}
+export interface ButtonProps {
+  size?: string
+  icon?: ReactNode
+  link?: string | 'javascript:void(0);'
+  children: ReactNode
 }

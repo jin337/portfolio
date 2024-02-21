@@ -1,15 +1,7 @@
 'use client'
-import { memo } from "react"
+import { CardProp } from '@/types/user'
 
-const ItemCard = memo(({
-  title = ' Title',
-  icon,
-  children,
-}: {
-  title: String
-  icon?: React.ReactNode
-  children?: React.ReactNode
-}) => {
+const ItemCard = ({ title = ' Title', icon, children }: CardProp) => {
   return (
     <div className='my-8 group overflow-hidden'>
       <div className='inline-block relative'>
@@ -24,6 +16,6 @@ const ItemCard = memo(({
       <div className='mt-3'>{children}</div>
     </div>
   )
-})
+}
 
 export default ItemCard

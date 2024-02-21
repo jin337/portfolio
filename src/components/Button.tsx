@@ -1,11 +1,7 @@
 'use client'
-import { memo } from 'react';
-const Button = memo(({ size = 'base', icon, link, children }: {
-  size?: string
-  icon?: React.ReactNode
-  link?: string | 'javascript:void(0);'
-  children: React.ReactNode
-}) => {
+import { ButtonProps } from '@/types/user'
+
+const Button = ({ size = 'base', icon, link, children }: ButtonProps) => {
   return (
     <div className='flex dark:text-neutral-100'>
       <a href={link} target='_blank' className={`${size == 'base' && 'py-2'} ${size == 'sm' && 'py-1'} border px-3 rounded-md dark:border-neutral-600 flex items-center hover:dark:bg-neutral-800`} >
@@ -16,6 +12,6 @@ const Button = memo(({ size = 'base', icon, link, children }: {
       </a>
     </div>
   )
-})
+}
 
 export default Button

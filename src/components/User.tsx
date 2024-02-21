@@ -1,12 +1,11 @@
 'use client'
-import { memo } from 'react'
 import Image from 'next/image'
 import { Github, Mail, Twitter } from 'lucide-react'
 import { useLocal } from '@/hooks/i18n';
 
-import { PropUser } from '@/types/user'
+import { UserProp } from '@/types/user'
 
-const User = memo(({ item }: { item: PropUser }) => {
+const User = ({ item }: { item: UserProp }) => {
 
   const list = [
     {
@@ -22,6 +21,7 @@ const User = memo(({ item }: { item: PropUser }) => {
       link: 'mailto:' + item?.email
     },
   ]
+
   return (
     <>
       <div className='flex flex-wrap justify-between items-end xs:items-center -mt-16'>
@@ -52,6 +52,5 @@ const User = memo(({ item }: { item: PropUser }) => {
     </>
   )
 }
-)
 
 export default User
