@@ -30,6 +30,11 @@ const ProjectSchema = new Schema({
     type: String,
     require: true,
   },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Member',
+    required: true,
+  },
 })
 
 export const ProjectModel = mongoose.models.Project || model('Project', ProjectSchema)

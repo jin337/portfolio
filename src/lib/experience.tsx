@@ -43,6 +43,11 @@ const ExperienceSchema = new Schema({
     type: [Number],
     require: true,
   },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Member',
+    required: true,
+  },
 })
 
 export const ExperienceModel = mongoose.models.Experience || model('Experience', ExperienceSchema)

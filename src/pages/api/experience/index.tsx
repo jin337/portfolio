@@ -11,12 +11,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       let filteredData
       if (Object.keys(req.query).length > 0) {
         const data = await userModel.findOne(req.query)
-        const { _id, __v, ...rest } = data.toObject();
+        const { _id, __v,user_id, ...rest } = data.toObject();
         filteredData = rest
       } else {
         const data = await userModel.find()
         filteredData = data.map(item => {
-          const { _id, __v, ...rest } = item.toObject();
+          const { _id, __v, user_id,...rest } = item.toObject();
           return rest;
         });
       }

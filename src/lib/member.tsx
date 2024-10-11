@@ -6,29 +6,29 @@ const MemberSchema = new Schema({
     require: true,
     unique: true,
   },
-  name: {
+  cn_name: {
+    type: String,
+    require: true,
+  },
+  cn_slogn: {
+    type: String,
+    require: true,
+  },
+  cn_about: {
     type: [String],
     require: true,
-    validate: {
-      validator: (v: string) => v.length === 2,
-      message: '不可超过2组数据',
-    },
   },
-  slogn: {
+  en_name: {
+    type: String,
+    require: true,
+  },
+  en_slogn: {
+    type: String,
+    require: true,
+  },
+  en_about: {
     type: [String],
     require: true,
-    validate: {
-      validator: (v: string) => v.length === 2,
-      message: '不可超过2组数据',
-    },
-  },
-  about: {
-    type: [[String]],
-    require: true,
-    validate: {
-      validator: (v: string) => Array.isArray(v) && v.length <= 2 && v.every(i => Array.isArray(i) && i.length > 0),
-      message: '不可超过2组数据',
-    },
   },
   cover: {
     type: String,
