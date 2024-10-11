@@ -40,7 +40,7 @@ const ExperienceSchema = new Schema({
     require: true,
   },
   tag_list: {
-    type: [String],
+    type: [Number],
     require: true,
   },
 })
@@ -64,7 +64,7 @@ const ProjectSchema = new Schema({
     require: true,
   },
   tag_list: {
-    type: [String],
+    type: [Number],
     require: true,
   },
   github_link: {
@@ -79,7 +79,7 @@ const ProjectSchema = new Schema({
 
 const TagSchema = new Schema({
   key: {
-    type: Number,
+   type: Number,
     required: [true, 'Key是必填项'],
     unique: true,
   },

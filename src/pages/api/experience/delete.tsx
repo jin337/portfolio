@@ -1,16 +1,15 @@
 import { connectDB } from '@/lib/db';
-import { ExperienceModel } from '@/lib/model';
 import { resultProps } from '@/types/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import { ExperienceModel } from '@/lib/model';
 export default async function handler(req: NextApiRequest, res: NextApiResponse<resultProps>): Promise<void> {
   // 连接数据库
   await connectDB();
-
-  try {
-    if (req.method === 'POST') {
+  if (req.method === 'POST') {
+    try {
       const body = req.body;
-      const item = await ExperienceModel.findOne({ key: body.key });
+      const item = await ExperienceModel.findOne({ id: body.id });
 
       let msg
       if (item) {
@@ -23,18 +22,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         state: 200,
         msg: msg,
       });
-    } else {
-      res.status(405).json({
-        state: 405,
-        msg: 'Method Not Allowed',
+    } catch (error) {
+      const err = error as Error;
+      res.status(500).json({
+        state: 500,
+        msg: '服务器错误',
+        error: err.message
       });
     }
-  } catch (error) {
-    const err = error as Error;
-    res.status(500).json({
-      state: 500,
-      msg: '服务器错误',
-      error: err.message
+  } else {
+    res.status(405).json({
+      state: 405,
+      msg: 'Method Not Allowed',
     });
   }
 }
