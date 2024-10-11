@@ -1,0 +1,35 @@
+import mongoose, { Schema, model } from 'mongoose';
+
+const ProjectSchema = new Schema({
+  id: {
+    type: Number,
+    require: true,
+    unique: true,
+  },
+  cover: {
+    type: String,
+    require: true,
+  },
+  project_name: {
+    type: String,
+    require: true,
+  },
+  description: {
+    type: String,
+    require: true,
+  },
+  tag_list: {
+    type: [Number],
+    require: true,
+  },
+  github_link: {
+    type: String,
+    require: true,
+  },
+  link: {
+    type: String,
+    require: true,
+  },
+})
+
+export const ProjectModel = mongoose.models.Project || model('Project', ProjectSchema)

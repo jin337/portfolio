@@ -2,21 +2,22 @@ import { connectDB } from '@/lib/db';
 import { resultProps } from '@/types/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { UserModel } from '@/lib/model';
+import { MemberModel as userModel } from '@/lib/member';
 export default async function handler(req: NextApiRequest, res: NextApiResponse<resultProps>): Promise<void> {
   // 连接数据库
   await connectDB();
   if (req.method === 'POST') {
     try {
       const body = req.body;
-      const user = await UserModel.findOne({ id: body.id });
+      const item = await userModel.findOne({ id: body.id });
+
       let create
       let msg
-      if (user) {
-        create = await UserModel.findByIdAndUpdate(user._id, body, { new: true, runValidators: true })
+      if (item) {
+        create = await userModel.findByIdAndUpdate(item._id, body, { new: true , runValidators: true })
         msg = '更新成功'
       } else {
-        const result = await UserModel.find();
+        const result = await userModel.find();
         const last = result.slice(-1);
         let id = null;
         if (last.length > 0) {
@@ -25,14 +26,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           id = 1;
         }
         body.id = id;
-        create = await UserModel.create(body);
+
+        create = await userModel.create(body);
         msg = '添加成功'
       }
 
       const { _id, __v, ...rest } = create.toObject();
 
-      res.status(201).json({
-        state: 201,
+      res.status(200).json({
+        state: 200,
         msg: msg,
         data: rest,
       });

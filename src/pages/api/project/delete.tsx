@@ -2,18 +2,18 @@ import { connectDB } from '@/lib/db';
 import { resultProps } from '@/types/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { ProjectModel } from '@/lib/model';
+import { ProjectModel as userModel } from '@/lib/project';
 export default async function handler(req: NextApiRequest, res: NextApiResponse<resultProps>): Promise<void> {
   // 连接数据库
   await connectDB();
   if (req.method === 'POST') {
     try {
       const body = req.body;
-      const item = await ProjectModel.findOne({ id: body.id });
+      const item = await userModel.findOne({ id: body.id });
 
       let msg
       if (item) {
-        const { acknowledged } = await ProjectModel.deleteOne(item._id, body)
+        const { acknowledged } = await userModel.deleteOne(item._id, body)
         msg = acknowledged ? '删除成功' : '删除失败'
       } else {
         msg = '未找到当前数据'

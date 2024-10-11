@@ -90,6 +90,62 @@ const TagSchema = new Schema({
   },
 });
 
+const MemberSchema = new Schema({
+  id: {
+    type: Number,
+    require: true,
+    unique: true,
+  },
+  type: {
+    type: String,
+    require: true,
+    enum: ['en', 'cn'],
+  },
+  name: {
+    type: String,
+    require: true,
+  },
+  slogn: {
+    type: String,
+    require: true,
+  },
+  cover: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+    require: true,
+  },
+  github_link: {
+    type: String,
+    require: true,
+  },
+  twitter_link: {
+    type: String,
+    require: true,
+  },
+  bannerbg: {
+    type: String,
+    require: true,
+  },
+  about: {
+    type: [String],
+    require: true,
+  },
+  skills: {
+    type: [String],
+    require: true,
+  },
+  experience_list: {
+    type: [ExperienceSchema],
+    require: true,
+  },
+  project_list: {
+    type: [ProjectSchema],
+    require: true,
+  },
+})
 const UserSchema = new Schema({
   id: {
     type: Number,
@@ -148,6 +204,8 @@ const UserSchema = new Schema({
 })
 
 export const UserModel = mongoose.models.User || model('User', UserSchema)
+
+export const MemberModel = mongoose.models.Member || model('Member', MemberSchema)
 export const ExperienceModel = mongoose.models.Experience || model('Experience', ExperienceSchema)
 export const ProjectModel = mongoose.models.Project || model('Project', ProjectSchema)
 export const TagModel = mongoose.models.Tag || model('Tag', TagSchema)

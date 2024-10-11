@@ -2,18 +2,25 @@ import { connectDB } from '@/lib/db';
 import { resultProps } from '@/types/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { TagModel } from '@/lib/model';
+import { TagModel as userModel } from '@/lib/tag';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<resultProps>): Promise<void> {
   // 连接数据库
   await connectDB();
   if (req.method === 'GET') {
     try {
-      const data = await TagModel.find();
-      const filteredData = data.map(item => {
-        const { _id, __v, ...rest } = item.toObject();
-        return rest;
-      });
+      let filteredData
+      if (Object.keys(req.query).length > 0) {
+        const data = await userModel.findOne(req.query)
+        const { _id, __v, ...rest } = data.toObject();
+        filteredData = rest
+      } else {
+        const data = await userModel.find()
+        filteredData = data.map(item => {
+          const { _id, __v, ...rest } = item.toObject();
+          return rest;
+        });
+      }
 
       res.status(200).json({
         state: 200,

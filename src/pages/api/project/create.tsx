@@ -2,22 +2,22 @@ import { connectDB } from '@/lib/db';
 import { resultProps } from '@/types/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { ProjectModel } from '@/lib/model';
+import { ProjectModel as userModel } from '@/lib/project';
 export default async function handler(req: NextApiRequest, res: NextApiResponse<resultProps>): Promise<void> {
   // 连接数据库
   await connectDB();
   if (req.method === 'POST') {
     try {
       const body = req.body;
-      const item = await ProjectModel.findOne({ id: body.id });
+      const item = await userModel.findOne({ id: body.id });
 
       let create
       let msg
       if (item) {
-        create = await ProjectModel.findByIdAndUpdate(item._id, body, { new: true , runValidators: true })
+        create = await userModel.findByIdAndUpdate(item._id, body, { new: true , runValidators: true })
         msg = '更新成功'
       } else {
-        const result = await ProjectModel.find();
+        const result = await userModel.find();
         const last = result.slice(-1);
         let id = null;
         if (last.length > 0) {
@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         }
         body.id = id;
 
-        create = await ProjectModel.create(body);
+        create = await userModel.create(body);
         msg = '添加成功'
       }
 

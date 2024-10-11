@@ -2,22 +2,22 @@ import { connectDB } from '@/lib/db';
 import { resultProps } from '@/types/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { TagModel } from '@/lib/model';
+import { TagModel as userModel } from '@/lib/tag';
 export default async function handler(req: NextApiRequest, res: NextApiResponse<resultProps>): Promise<void> {
   // 连接数据库
   await connectDB();
   if (req.method === 'POST') {
     try {
       const body = req.body;
-      const item = await TagModel.findOne({ key: body.key });
+      const item = await userModel.findOne({ key: body.key });
 
       let create
       let msg
       if (item) {
-        create = await TagModel.findByIdAndUpdate(item._id, body, { new: true, runValidators: true })
+        create = await userModel.findByIdAndUpdate(item._id, body, { new: true, runValidators: true })
         msg = '更新成功'
       } else {
-        create = await TagModel.create(body);
+        create = await userModel.create(body);
         msg = '添加成功'
       }
 
