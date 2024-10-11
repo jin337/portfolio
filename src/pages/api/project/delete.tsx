@@ -1,5 +1,5 @@
 import { connectDB } from '@/lib/db';
-import { UserModel } from '@/lib/model';
+import { ProjectModel } from '@/lib/model';
 import { resultProps } from '@/types/user';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -8,26 +8,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   await connectDB();
 
   try {
-    if (req.method === 'GET') {
-      const user = await UserModel.find({ id: 1 });
-      if (user) {
-        const userEN = user.find(e => e.type == 'en')
-        const userCN = user.find(e => e.type == 'cn')
+    if (req.method === 'POST') {
+      const body = req.body;
+      const item = await ProjectModel.findOne({ key: body.key });
 
-        res.status(200).json({
-          state: 200,
-          msg: '',
-          data: {
-            en: userEN || {},
-            cn: userCN || {},
-          },
-        });
+      let msg
+      if (item) {
+        const { acknowledged } = await ProjectModel.deleteOne(item._id, body)
+        msg = acknowledged ? '删除成功' : '删除失败'
       } else {
-        res.status(404).json({
-          state: 404,
-          msg: '用户未找到',
-        });
+        msg = '未找到当前数据'
       }
+      res.status(200).json({
+        state: 200,
+        msg: msg,
+      });
     } else {
       res.status(405).json({
         state: 405,

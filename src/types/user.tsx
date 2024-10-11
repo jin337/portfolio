@@ -23,6 +23,10 @@ export interface proProps {
   link: string
   children?: ReactNode
 }
+export interface TagProps {
+  key: number
+  value: string
+}
 
 export interface UserProp {
   id?: number
@@ -46,10 +50,11 @@ export interface dataProps {
   cn?: UserProp
 }
 
-export interface UserInfo {
+export interface resultProps {
   state: number | undefined
-  msg: string | undefined
-  data?: dataProps
+  msg?: string | undefined
+  data?: dataProps | any,
+  error?: string | Record<string, unknown>;
 }
 
 export interface StateProps {

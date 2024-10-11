@@ -1,9 +1,10 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose';
 
 const ExperienceSchema = new Schema({
   id: {
     type: Number,
     require: true,
+    unique: true,
   },
   logo: {
     type: String,
@@ -43,10 +44,12 @@ const ExperienceSchema = new Schema({
     require: true,
   },
 })
+
 const ProjectSchema = new Schema({
   id: {
     type: Number,
     require: true,
+    unique: true,
   },
   cover: {
     type: String,
@@ -73,10 +76,25 @@ const ProjectSchema = new Schema({
     require: true,
   },
 })
+
+const TagSchema = new Schema({
+  key: {
+    type: Number,
+    required: [true, 'Key是必填项'],
+    unique: true,
+  },
+  value: {
+    type: String,
+    required: [true, 'Value是必填项'],
+    minlength: [2, 'Value的长度必须大于1个字符'],
+  },
+});
+
 const UserSchema = new Schema({
   id: {
     type: Number,
     require: true,
+    unique: true,
   },
   type: {
     type: String,
@@ -129,4 +147,7 @@ const UserSchema = new Schema({
   },
 })
 
-export const UserModel = mongoose.models.User || mongoose.model('User', UserSchema)
+export const UserModel = mongoose.models.User || model('User', UserSchema)
+export const ExperienceModel = mongoose.models.Experience || model('Experience', ExperienceSchema)
+export const ProjectModel = mongoose.models.Project || model('Project', ProjectSchema)
+export const TagModel = mongoose.models.Tag || model('Tag', TagSchema)

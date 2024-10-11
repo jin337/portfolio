@@ -8,26 +8,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   await connectDB();
 
   try {
-    if (req.method === 'GET') {
-      const user = await UserModel.find({ id: 1 });
+    if (req.method === 'POST') {
+      const body = req.body;
+      const user = await UserModel.findOne({ id: body.id, type: body.type });
+      let create
+      let msg
       if (user) {
-        const userEN = user.find(e => e.type == 'en')
-        const userCN = user.find(e => e.type == 'cn')
-
-        res.status(200).json({
-          state: 200,
-          msg: '',
-          data: {
-            en: userEN || {},
-            cn: userCN || {},
-          },
-        });
+        create = await UserModel.findByIdAndUpdate(user._id, body, { new: true })
+        msg = '更新成功'
       } else {
-        res.status(404).json({
-          state: 404,
-          msg: '用户未找到',
-        });
+        create = await UserModel.create(body);
+        msg = '添加成功'
       }
+
+      const { _id, __v, ...rest } = create.toObject();
+
+      res.status(201).json({
+        state: 201,
+        msg: msg,
+        data: rest,
+      });
     } else {
       res.status(405).json({
         state: 405,
