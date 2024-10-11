@@ -6,27 +6,19 @@ const MemberSchema = new Schema({
     require: true,
     unique: true,
   },
-  cn_name: {
+  type: {
+    type: Number,
+    require: true,
+  },
+  name: {
     type: String,
     require: true,
   },
-  cn_slogn: {
+  slogn: {
     type: String,
     require: true,
   },
-  cn_about: {
-    type: [String],
-    require: true,
-  },
-  en_name: {
-    type: String,
-    require: true,
-  },
-  en_slogn: {
-    type: String,
-    require: true,
-  },
-  en_about: {
+  about: {
     type: [String],
     require: true,
   },

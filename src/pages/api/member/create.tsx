@@ -9,12 +9,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (req.method === 'POST') {
     try {
       const body = req.body;
-      const item = await userModel.findOne({ id: body.id });
+      const item = await userModel.findOne({ id: body.id, type: body.type });
 
       let create
       let msg
       if (item) {
-        create = await userModel.findByIdAndUpdate(item._id, body, { new: true , runValidators: true })
+        create = await userModel.findByIdAndUpdate(item._id, body, { new: true, runValidators: true })
         msg = '更新成功'
       } else {
         const result = await userModel.find();
