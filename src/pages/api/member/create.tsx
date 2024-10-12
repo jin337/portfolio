@@ -11,12 +11,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const body = req.body;
       const item = await userModel.findOne({ id: body.id, type: body.type });
 
+
       let create
       let msg
       if (item) {
         create = await userModel.findByIdAndUpdate(item._id, body, { new: true, runValidators: true })
         msg = '更新成功'
-      } else {
+      } if (!Object.keys(body).includes('id')) {
         const result = await userModel.find();
         const last = result.slice(-1);
         let id = null;
@@ -26,10 +27,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           id = 1;
         }
         body.id = id;
-
-        create = await userModel.create(body);
-        msg = '添加成功'
       }
+      create = await userModel.create(body);
+      msg = '添加成功'
 
       const { _id, __v, ...rest } = create.toObject();
 

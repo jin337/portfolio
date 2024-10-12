@@ -4,7 +4,6 @@ const MemberSchema = new Schema({
   id: {
     type: Number,
     require: true,
-    unique: true,
   },
   type: {
     type: Number,
