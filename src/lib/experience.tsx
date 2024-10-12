@@ -48,6 +48,10 @@ const ExperienceSchema = new Schema({
     type: [Number],
     require: true,
   },
+  sort: {
+    type: Number,
+    require: true,
+  },
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'Member',

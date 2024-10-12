@@ -35,6 +35,10 @@ const ProjectSchema = new Schema({
     type: String,
     require: true,
   },
+  sort: {
+    type: Number,
+    require: true,
+  },
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'Member',

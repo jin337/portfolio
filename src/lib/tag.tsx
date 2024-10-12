@@ -2,7 +2,7 @@ import mongoose, { Schema, model } from 'mongoose';
 
 const TagSchema = new Schema({
   key: {
-   type: Number,
+    type: Number,
     required: [true, 'Key是必填项'],
     unique: true,
   },
@@ -10,6 +10,10 @@ const TagSchema = new Schema({
     type: String,
     required: [true, 'Value是必填项'],
     minlength: [2, 'Value的长度必须大于1个字符'],
+  },
+  sort: {
+    type: Number,
+    require: true,
   },
   user_id: {
     type: Schema.Types.ObjectId,
