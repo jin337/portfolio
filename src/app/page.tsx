@@ -1,12 +1,12 @@
 'use client'
-import { ScanFace, Cookie, LayoutList, LibraryBig } from 'lucide-react'
-import { Fragment, useEffect, useState, lazy, useMemo } from 'react'
-import { Provider } from 'react-redux';
 import { store } from '@/store/index';
+import { Cookie, LayoutList, LibraryBig, ScanFace } from 'lucide-react';
+import { Fragment, lazy, useEffect, useMemo, useState } from 'react';
+import { Provider } from 'react-redux';
 
-import { UserProp } from '@/types/user'
-import { useAppDispatch, useAppSelector } from '@/hooks/redux'
-import { setUserContent, setI18nContent } from '@/store/reducers/common'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setI18nContent, setUserContent } from '@/store/reducers/common';
+import { UserProp } from '@/types/user';
 
 const Header = lazy(() => import('@/components/Header'))
 const Footer = lazy(() => import('@/components/Footer'))
@@ -27,7 +27,7 @@ const Main = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchData = async (type: string) => {
-    const result = await fetch('/api/user');
+    const result = await fetch('/api/member?id=1');
     const res = await result.json();
     if (res.data) {
       setUser(res.data[type]);

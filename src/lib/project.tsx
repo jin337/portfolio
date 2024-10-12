@@ -6,6 +6,11 @@ const ProjectSchema = new Schema({
     require: true,
     unique: true,
   },
+  type: {
+    type: String,
+    require: true,
+    enum: ['en', 'cn'],
+  },
   cover: {
     type: String,
     require: true,

@@ -35,52 +35,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         const skills = transObj(skills_data)
         const experience_list = transObj(experience_data).map(e => ({
           ...e,
-          tag_list: e.tag_list.map((element: number) => skills.find(e => e.key === element)?.value)
+          tag_list: e.tag_list?.map((element: number) => skills.find(e => e.key === element)?.value)
         }))
         const project_list = transObj(project_data).map(e => ({
           ...e,
-          tag_list: e.tag_list.map((element: number) => skills.find(e => e.key === element)?.value)
+          tag_list: e.tag_list?.map((element: number) => skills.find(e => e.key === element)?.value)
         }))
 
         const personal: any = {}
         user.forEach(({ type }: any) => {
           personal[type] = transObj(user).find(e => e.type == type)
           personal[type].skills = skills.map(e => e.value)
-          personal[type].experience_list = experience_list
-          personal[type].project_list = project_list
+          personal[type].experience_list = experience_list.filter(e => e.type === type)
+          personal[type].project_list = project_list.filter(e => e.type === type)
         });
 
         filteredData = personal
       } else {
         const data = await userModel.find()
-        const newData = await Promise.all(
-          data.map(async item => {
-            const { _id, __v, ...rest } = item.toObject();
-            const skills_data = await TagModel.find({ user_id: _id });
-            const experience_data = await ExperienceModel.find({ user_id: _id });
-            const project_data = await ProjectModel.find({ user_id: _id });
-
-            const skills = transObj(skills_data);
-
-            const experience_list = transObj(experience_data).map(e => ({
-              ...e,
-              tag_list: e.tag_list.map((element: number) => skills.find(e => e.key === element)?.value),
-            }));
-
-            const project_list = transObj(project_data).map(e => ({
-              ...e,
-              tag_list: e.tag_list.map((element: number) => skills.find(e => e.key === element)?.value),
-            }));
-
-            return {
-              ...rest,
-              skills: skills.map(e => e.value),
-              experience_list,
-              project_list,
-            };
-          })
-        );
-        // 分组
         const transformArray = (arr: any) => {
           return arr.reduce((acc: any, curr: any) => {
             const existingItem = acc.find((e: any) => e.id === curr.id);
@@ -96,7 +68,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           }, []);
         };
 
-        filteredData = transformArray(newData);
+        filteredData = transformArray(transObj(data));
       }
 
       res.status(200).json({

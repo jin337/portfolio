@@ -6,6 +6,11 @@ const ExperienceSchema = new Schema({
     require: true,
     unique: true,
   },
+  type: {
+    type: String,
+    require: true,
+    enum: ['en', 'cn'],
+  },
   logo: {
     type: String,
     require: true,

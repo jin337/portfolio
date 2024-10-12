@@ -6,8 +6,9 @@ const MemberSchema = new Schema({
     require: true,
   },
   type: {
-    type: Number,
-    require: true, // 1中文，2英文
+    type: String,
+    require: true,
+    enum: ['en', 'cn'],
   },
   name: {
     type: String,
