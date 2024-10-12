@@ -46,8 +46,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         user.forEach(({ type }: any) => {
           personal[type] = transObj(user).find(e => e.type == type)
           personal[type].skills = skills.map(e => e.value)
-          personal[type].experience_list = experience_list.filter(e => e.type === type)
-          personal[type].project_list = project_list.filter(e => e.type === type)
+          personal[type].experience_list = experience_list.filter(e => e.type === type).sort((a, b) => b.sort - a.sort)
+          personal[type].project_list = project_list.filter(e => e.type === type).sort((a, b) => b.sort - a.sort)
         });
 
         filteredData = personal
