@@ -7,7 +7,7 @@ const MemberSchema = new Schema({
   },
   type: {
     type: Number,
-    require: true,
+    require: true, // 1中文，2英文
   },
   name: {
     type: String,

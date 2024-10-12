@@ -26,7 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
         const user = await userModel.find({ id });
 
-        const uid = user[0].id
+        const uid = user[0]._id
+
         const skills_data = await TagModel.find({ user_id: uid })
         const experience_data = await ExperienceModel.find({ user_id: uid })
         const project_data = await ProjectModel.find({ user_id: uid })
